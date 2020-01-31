@@ -9,7 +9,7 @@ namespace InsuranceTest.API.Models
         public string FullName { get; set; }    
         public DateTime InitDate { get; set; }
         public decimal Salary { get; set; }
-        public string Change { get; set; }
+        public string Charge { get; set; }
         public ICollection<Insurance> Insurances { get; set; }
     }
 }

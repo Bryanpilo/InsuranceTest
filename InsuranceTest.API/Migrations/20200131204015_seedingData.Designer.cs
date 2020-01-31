@@ -4,14 +4,16 @@ using InsuranceTest.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InsuranceTest.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200131204015_seedingData")]
+    partial class seedingData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,6 +101,9 @@ namespace InsuranceTest.API.Migrations
                     b.Property<DateTime>("InitDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("InsuranceTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -111,6 +116,8 @@ namespace InsuranceTest.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("InsuranceTypeId");
 
                     b.HasIndex("RiskTypeId");
 
@@ -152,28 +159,6 @@ namespace InsuranceTest.API.Migrations
                             Id = 4,
                             Name = "Pérdida"
                         });
-                });
-
-            modelBuilder.Entity("InsuranceTest.API.Models.Insurance_InsuranceType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("InsuranceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InsuranceTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InsuranceId");
-
-                    b.HasIndex("InsuranceTypeId");
-
-                    b.ToTable("Insurances_InsuranceTypes");
                 });
 
             modelBuilder.Entity("InsuranceTest.API.Models.RiskType", b =>
@@ -240,24 +225,13 @@ namespace InsuranceTest.API.Migrations
                         .WithMany("Insurances")
                         .HasForeignKey("ClientId");
 
+                    b.HasOne("InsuranceTest.API.Models.InsuranceType", null)
+                        .WithMany("InsuranceTypes")
+                        .HasForeignKey("InsuranceTypeId");
+
                     b.HasOne("InsuranceTest.API.Models.RiskType", "RiskType")
                         .WithMany()
                         .HasForeignKey("RiskTypeId");
-                });
-
-            modelBuilder.Entity("InsuranceTest.API.Models.Insurance_InsuranceType", b =>
-                {
-                    b.HasOne("InsuranceTest.API.Models.Insurance", "Insurance")
-                        .WithMany("InsuranInsurance_InsuranceTypeceTypes")
-                        .HasForeignKey("InsuranceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("InsuranceTest.API.Models.InsuranceType", "InsuranceType")
-                        .WithMany("InsuranInsurance_InsuranceTypeceTypes")
-                        .HasForeignKey("InsuranceTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
