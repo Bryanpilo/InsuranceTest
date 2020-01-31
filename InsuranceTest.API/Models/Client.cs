@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace InsuranceTest.API.Models
 {
@@ -9,5 +10,6 @@ namespace InsuranceTest.API.Models
         public DateTime InitDate { get; set; }
         public decimal Salary { get; set; }
         public string Change { get; set; }
+        public ICollection<Insurance> Insurances { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace InsuranceTest.API.Models
 {
@@ -10,5 +11,8 @@ namespace InsuranceTest.API.Models
         public int CoverageMonths { get; set; }
         public DateTime InitDate { get; set; }
         public decimal Price { get; set; }
+
+        public ICollection<InsuranceType> InsuranceTypes { get; set; }
+        public RiskType RiskType { get; set; }
     }
 }
