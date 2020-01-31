@@ -4,10 +4,11 @@ namespace InsuranceTest.API.Business.Interface
 {
     public interface IInsuranceBL
     {
-        bool Register(UserRegisterDTO userRegisterDTO);
-        UserDTO Login(UserLoginDTO userLoginDTO);
+        void getAllInsuranceByClientID(int id);
+        
+        bool addInsurance();
 
-        FullUserDTO fullUser(string username);
+        bool deleteInsurance();
     
     }
 }
