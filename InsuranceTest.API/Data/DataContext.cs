@@ -1,3 +1,4 @@
+using InsuranceTest.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsuranceTest.API.Data
@@ -10,6 +11,9 @@ namespace InsuranceTest.API.Data
         {
 
         }
+
+        //this will be ours tables
+        public DbSet<User> Users { get; set; }
 
     }
 }

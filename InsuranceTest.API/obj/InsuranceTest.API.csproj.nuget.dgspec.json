@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj": {}
+    "C:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj": {}
   },
   "projects": {
-    "c:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj": {
+    "C:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj",
+        "projectUniqueName": "C:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj",
         "projectName": "InsuranceTest.API",
-        "projectPath": "c:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj",
+        "projectPath": "C:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\InsuranceTest.API.csproj",
         "packagesPath": "C:\\Users\\yh684jy\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\obj\\",
+        "outputPath": "C:\\Users\\yh684jy\\Desktop\\Insurance Test\\InsuranceTest.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
