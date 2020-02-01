@@ -1,5 +1,5 @@
 const loginReducer = (state = ({
-    isLogin: false,
+    isLogin:  sessionStorage.getItem('login'),
     username: null,
     token: null
 }), action) => {

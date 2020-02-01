@@ -28,6 +28,7 @@ const Login = (props) => {
        if(response.status===200){
         dispatch(LoginAction.setUsername(response.data.userName));
         dispatch(LoginAction.setToken(response.data.token));
+        sessionStorage.setItem('login', true);
         dispatch(LoginAction.isLogin());
       }
     })
@@ -44,19 +45,16 @@ const Login = (props) => {
   return (
     <Form>
       <Form.Group controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" ref={username} />
-        <Form.Text className="text-muted">
-          We'll never share your username with anyone else.
-      </Form.Text>
+        <Form.Label>Usuario</Form.Label>
+        <Form.Control type="text" placeholder="Ingresa tu usuario" ref={username} />
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Contraseña</Form.Label>
         <Form.Control type="password" placeholder="Password" ref={password}/>
       </Form.Group>
       <Button variant="primary" onClick={()=>login()}>
-        Submit
+        Iniciar sesion
     </Button>
     </Form>
   );

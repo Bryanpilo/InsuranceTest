@@ -14,7 +14,7 @@ const setUsername = data => {
 
 const setToken = data => {
     return {
-        type: "setToken",
+        type: "SET_TOKEN",
         payload: data
     };
 };

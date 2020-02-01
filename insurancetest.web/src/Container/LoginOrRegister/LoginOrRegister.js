@@ -19,10 +19,10 @@ const LoginOrRegister = (props) => {
         </Col>
         <Col sm={4}>
           <Tabs defaultActiveKey="Login" id="uncontrolled-tab-example">
-            <Tab eventKey="Login" title="Login">
+            <Tab eventKey="Login" title="Iniciar sesion">
               <Login />
             </Tab>
-            <Tab eventKey="Register" title="Register">
+            <Tab eventKey="Register" title="Registrarse">
               <Register />
             </Tab>
           </Tabs>
