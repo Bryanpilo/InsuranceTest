@@ -1,0 +1,27 @@
+.greetingRow{
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.SpaceDivs{
+  margin-bottom: 2%;
+  margin-top: 1%;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  
+  background-color: transparent;
+  color: black;
+  border-style: solid;
+  border-color: transparent transparent #00a3ae transparent;
+  font-weight: bold;
+}
+
+.nav-pills .nav-link {
+  font-size: 16px !important;
+  color: #666;
+}
+
+.nav-pills .nav-link:hover{
+  color: black !important;
+}

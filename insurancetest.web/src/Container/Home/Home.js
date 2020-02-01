@@ -45,6 +45,10 @@ const Home = (props) => {
       });
   }
 
+  const getInsurances = (prop) =>{
+    props.history.replace("/Insurance");
+  }
+
   var hour = new Date().getHours();
   const greeting = (hour < 12 ? "Buenos días " : hour < 18 ? "Buenas tardes " : "Buenas noches ");
 
@@ -79,10 +83,9 @@ const Home = (props) => {
                       <td>
                         <Button value={" - "}
                           variant={"outline-success"}
-                          // onClick={() => deleteDocument(i)}
-                          disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
+                          onClick={() => getInsurances()}
                         >
-                          Seguros
+                          Poliza
                       </Button>
                       </td>
                     </tr>

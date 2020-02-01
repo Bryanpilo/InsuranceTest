@@ -1,10 +1,6 @@
 using InsuranceTest.API.Business.Implementation;
-using InsuranceTest.API.Business.Interface;
-using InsuranceTest.API.DTO.Client;
-using InsuranceTest.API.DTO.RiskType;
-using InsuranceTest.API.DTO.User;
+using InsuranceTest.API.Helper;
 using Moq;
-using System;
 using Xunit;
 
 namespace XUnitTestInsuranceTest
@@ -12,20 +8,28 @@ namespace XUnitTestInsuranceTest
     public class UserTest
     {
 
-        [Fact]
-        public void CanRegister_UserRegister_ReturnTrue()
+        [Fact] 
+        public void HighRiskValidation_InsuranceValidation_ReturnTrue()
         {
-            var mock = new Mock<IInsuranceBL>();
+            InsuranceValidations _insuranceValidation = new InsuranceValidations();
 
             //Act
-            mock.Setup(m => m.IsInsuranceHighRiskValidated(4, 40)).Returns(true);
-            //IInsuranceBL insuranceBL = mock.Object; 
-            IInsuranceBL insuranceBL = mock.Object;
-            //bool result = mock.Object.IsInsuranceHighRiskValidated(4, 40);
-            var result = insuranceBL.IsInsuranceHighRiskValidated(4,60);
+            var result = _insuranceValidation.IsInsuranceHighRiskValidated(4, 50);
 
             //Assert
             Assert.True(result);
+        }
+
+        [Fact]
+        public void HighRiskValidation_InsuranceValidation_ReturnFalse()
+        {
+            InsuranceValidations _insuranceValidation = new InsuranceValidations();
+
+            //Act
+            var result = _insuranceValidation.IsInsuranceHighRiskValidated(4, 60);
+
+            //Assert
+            Assert.False(result);
         }
     }
 }

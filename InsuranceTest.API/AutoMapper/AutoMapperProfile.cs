@@ -68,6 +68,32 @@ namespace InsuranceTest.API.AutoMapper
                             v => v.Id))
             .ReverseMap();
 
+            CreateMap<Insurance, InsuranceDTO>()
+            .ForMember(m => m.Id,
+                        vm => vm.MapFrom(
+                            v => v.Id))
+            .ForMember(m => m.Name,
+                        vm => vm.MapFrom(
+                            v => v.Name))
+            .ForMember(m => m.Description,
+                        vm => vm.MapFrom(
+                            v => v.Description))
+            .ForMember(m => m.Coverage,
+                        vm => vm.MapFrom(
+                            v => v.Coverage))
+            .ForMember(m => m.CoverageMonths,
+                        vm => vm.MapFrom(
+                            v => v.CoverageMonths))
+            .ForMember(m => m.InitDate,
+                        vm => vm.MapFrom(
+                            v => v.InitDate))
+            .ForMember(m => m.Price,
+                        vm => vm.MapFrom(
+                            v => v.Price))
+            .ForMember(m => m.RiskName,
+                        vm => vm.MapFrom(
+                            v => v.RiskType.Risk))
+            .ReverseMap();
 
         }
     }

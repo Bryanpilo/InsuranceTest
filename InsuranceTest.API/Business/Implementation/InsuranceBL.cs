@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using InsuranceTest.API.DTO.InsuranceType;
 using InsuranceTest.API.Models;
 using System.Linq;
+using InsuranceTest.API.Helper;
 
 namespace InsuranceTest.API.Business.Implementation
 {
@@ -17,16 +18,24 @@ namespace InsuranceTest.API.Business.Implementation
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly InsuranceValidations _insuranceValidations;
 
         public InsuranceBL(IUnitOfWork unitOfWork,
                              IMapper mapper,
                              IConfiguration configuration,
-                             IInsuranceRepository insuranceRepository)
+                             IInsuranceRepository insuranceRepository,
+                             InsuranceValidations insuranceValidations)
         {
+            _insuranceValidations= insuranceValidations;
             _insuranceRepository = insuranceRepository;
             _configuration = configuration;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
+
+        }
+
+        public InsuranceBL()
+        {
 
         }
 
@@ -40,8 +49,8 @@ namespace InsuranceTest.API.Business.Implementation
                 CoverageMonths = insuranceDTO.CoverageMonths,
                 InitDate = insuranceDTO.InitDate,
                 Price = insuranceDTO.Price,
-                ClientId = 1,
-                RiskTypeId = insuranceDTO.RiskType.Id
+                // ClientId = 1,
+                // RiskTypeId = insuranceDTO.RiskType.Id
                 // RiskType = _mapper.Map<RiskType>()
                 // InsuranInsurance_InsuranceTypeceTypes = _mapper.Map<ICollection<Insurance_InsuranceType>>(insuranceDTO.InsuranceTypes.ToList())
             };
@@ -70,9 +79,5 @@ namespace InsuranceTest.API.Business.Implementation
             return _mapper.Map<IEnumerable<InsuranceDTO>>(Insurance.AsEnumerable());
         }
 
-        public bool IsInsuranceHighRiskValidated(int RiskId, float Coverage)
-        {
-            return RiskId == 4 && Coverage > 50 ? false : true;
-        }
     }
 }

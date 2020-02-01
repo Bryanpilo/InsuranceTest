@@ -8,15 +8,15 @@ namespace InsuranceTest.API.DTO.Client
 {
     public class InsuranceDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public float Coverage { get; set; }
         public int CoverageMonths { get; set; }
         public DateTime InitDate { get; set; }
         public decimal Price { get; set; }
+        public string RiskName { get; set; }
 
-        public RiskTypeDTO RiskType { get; set; }
 
-        public ICollection<InsuranceTypeDTO> InsuranceTypes { get; set; }
     }
 }

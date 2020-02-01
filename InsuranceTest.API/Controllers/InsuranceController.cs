@@ -18,8 +18,6 @@ namespace InsuranceTest.API.Controllers
             _insuranceBL = insuranceBL;
         }
 
-         //POST api/user/login
-        [AllowAnonymous]
         [HttpPost("CreateInsurance")]
         public IActionResult CreateInsurance(InsuranceDTO insuranceDTO)
         {
@@ -27,6 +25,18 @@ namespace InsuranceTest.API.Controllers
 
             if (values == false)
                 return Unauthorized();
+
+
+            return Ok(values);
+        }
+
+        [HttpPost]
+        public IActionResult Post(int id)
+        {
+            var values = _insuranceBL.getAllInsuranceByClientID(id);
+
+            if (values == null)
+                return StatusCode(204);
 
 
             return Ok(values);
