@@ -84,7 +84,7 @@ namespace InsuranceTest.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClientId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<float>("Coverage")
@@ -105,7 +105,7 @@ namespace InsuranceTest.API.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("RiskTypeId")
+                    b.Property<int>("RiskTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -236,13 +236,17 @@ namespace InsuranceTest.API.Migrations
 
             modelBuilder.Entity("InsuranceTest.API.Models.Insurance", b =>
                 {
-                    b.HasOne("InsuranceTest.API.Models.Client", null)
+                    b.HasOne("InsuranceTest.API.Models.Client", "Client")
                         .WithMany("Insurances")
-                        .HasForeignKey("ClientId");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("InsuranceTest.API.Models.RiskType", "RiskType")
                         .WithMany()
-                        .HasForeignKey("RiskTypeId");
+                        .HasForeignKey("RiskTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("InsuranceTest.API.Models.Insurance_InsuranceType", b =>

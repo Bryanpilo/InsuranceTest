@@ -17,8 +17,8 @@ namespace InsuranceTest.API.Controllers
             _clientBL = clientBL;
         }
 
-        //GET api/user/username
-        [HttpGet]
+
+        [HttpPost("getAllClient")]
         public IActionResult getAllClient()
         {
             var clients = _clientBL.getAllClients();

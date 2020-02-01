@@ -1,16 +1,13 @@
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using InsuranceTest.API.Business.Interface;
-using InsuranceTest.API.DTO.User;
-using InsuranceTest.API.Models;
 using InsuranceTest.API.Repository.Interface;
 using InsuranceTest.API.DTO.Client;
 using System.Collections.Generic;
+using InsuranceTest.API.DTO.InsuranceType;
+using InsuranceTest.API.Models;
+using System.Linq;
 
 namespace InsuranceTest.API.Business.Implementation
 {
@@ -22,11 +19,11 @@ namespace InsuranceTest.API.Business.Implementation
         private readonly IUnitOfWork _unitOfWork;
 
         public InsuranceBL(IUnitOfWork unitOfWork,
-                             IMapper mapper, 
+                             IMapper mapper,
                              IConfiguration configuration,
                              IInsuranceRepository insuranceRepository)
         {
-            _insuranceRepository= insuranceRepository;
+            _insuranceRepository = insuranceRepository;
             _configuration = configuration;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
@@ -35,17 +32,47 @@ namespace InsuranceTest.API.Business.Implementation
 
         public bool addInsurance(InsuranceDTO insuranceDTO)
         {
-            throw new NotImplementedException();
+            Insurance insurance = new Insurance
+            {
+                Name = insuranceDTO.Name,
+                Description = insuranceDTO.Description,
+                Coverage = insuranceDTO.Coverage,
+                CoverageMonths = insuranceDTO.CoverageMonths,
+                InitDate = insuranceDTO.InitDate,
+                Price = insuranceDTO.Price,
+                ClientId = 1,
+                RiskTypeId = insuranceDTO.RiskType.Id
+                // RiskType = _mapper.Map<RiskType>()
+                // InsuranInsurance_InsuranceTypeceTypes = _mapper.Map<ICollection<Insurance_InsuranceType>>(insuranceDTO.InsuranceTypes.ToList())
+            };
+
+            _insuranceRepository.Add(insurance);
+
+            _unitOfWork.Save();
+
+            return true;
         }
 
         public bool deleteInsurance(int Id)
         {
-            throw new NotImplementedException();
+            _insuranceRepository.DeleteWhere(x => x.Id == Id);
+
+            _unitOfWork.Save();
+
+            return true;
         }
 
         public IEnumerable<InsuranceDTO> getAllInsuranceByClientID(int Id)
         {
-            throw new NotImplementedException();
+
+            var Insurance = _insuranceRepository.GetAll();
+
+            return _mapper.Map<IEnumerable<InsuranceDTO>>(Insurance.AsEnumerable());
+        }
+
+        public bool IsInsuranceHighRiskValidated(int RiskId, float Coverage)
+        {
+            return RiskId == 4 && Coverage > 50 ? false : true;
         }
     }
 }
