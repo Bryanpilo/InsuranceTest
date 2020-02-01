@@ -1,14 +1,11 @@
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using InsuranceTest.API.Business.Interface;
-using InsuranceTest.API.DTO.User;
-using InsuranceTest.API.Models;
 using InsuranceTest.API.Repository.Interface;
+using System.Collections.Generic;
+using InsuranceTest.API.DTO.Client;
+using System.Linq;
+using InsuranceTest.API.Models;
 
 namespace InsuranceTest.API.Business.Implementation
 {
@@ -31,9 +28,12 @@ namespace InsuranceTest.API.Business.Implementation
 
         }
 
-        public void getAllClients()
+        public IEnumerable<ClientDTO> getAllClients()
         {
-            throw new NotImplementedException();
+            var Clients=  _clientRepository.GetAll();
+
+            return _mapper.Map<IEnumerable<ClientDTO>>(Clients.AsEnumerable());
+
         }
     }
 }

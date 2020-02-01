@@ -1,14 +1,16 @@
+using System.Collections.Generic;
+using InsuranceTest.API.DTO.Client;
 using InsuranceTest.API.DTO.User;
 
 namespace InsuranceTest.API.Business.Interface
 {
     public interface IInsuranceBL
     {
-        void getAllInsuranceByClientID(int id);
+        IEnumerable<InsuranceDTO> getAllInsuranceByClientID(int Id);
         
-        bool addInsurance();
+        bool addInsurance(InsuranceDTO insuranceDTO);
 
-        bool deleteInsurance();
+        bool deleteInsurance(int Id);
     
     }
 }

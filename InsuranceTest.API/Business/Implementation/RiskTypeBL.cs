@@ -9,6 +9,9 @@ using InsuranceTest.API.Business.Interface;
 using InsuranceTest.API.DTO.User;
 using InsuranceTest.API.Models;
 using InsuranceTest.API.Repository.Interface;
+using System.Collections.Generic;
+using InsuranceTest.API.DTO.RiskType;
+using System.Linq;
 
 namespace InsuranceTest.API.Business.Implementation
 {
@@ -31,9 +34,11 @@ namespace InsuranceTest.API.Business.Implementation
 
         }
 
-        public void getAllRyskType()
+        public IEnumerable<RiskTypeDTO> getAllRyskType()
         {
-            throw new NotImplementedException();
+            var Clients=  _riskTypeRepository.GetAll();
+
+            return _mapper.Map<IEnumerable<RiskTypeDTO>>(Clients.AsEnumerable());
         }
     }
 }

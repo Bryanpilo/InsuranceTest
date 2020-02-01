@@ -9,6 +9,8 @@ using InsuranceTest.API.Business.Interface;
 using InsuranceTest.API.DTO.User;
 using InsuranceTest.API.Models;
 using InsuranceTest.API.Repository.Interface;
+using InsuranceTest.API.DTO.Client;
+using System.Collections.Generic;
 
 namespace InsuranceTest.API.Business.Implementation
 {
@@ -31,22 +33,17 @@ namespace InsuranceTest.API.Business.Implementation
 
         }
 
-        public bool addInsurance()
+        public bool addInsurance(InsuranceDTO insuranceDTO)
         {
             throw new NotImplementedException();
         }
 
-        public bool deleteInsurance()
+        public bool deleteInsurance(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public void getAllInsuranceByClientID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void getAllInsuranceByID(int id)
+        public IEnumerable<InsuranceDTO> getAllInsuranceByClientID(int Id)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,7 @@
 using AutoMapper;
+using InsuranceTest.API.DTO.Client;
+using InsuranceTest.API.DTO.InsuranceType;
+using InsuranceTest.API.DTO.RiskType;
 using InsuranceTest.API.DTO.User;
 using InsuranceTest.API.Models;
 
@@ -20,6 +23,43 @@ namespace InsuranceTest.API.AutoMapper
                         vm => vm.MapFrom(
                             v => v.Username))
             .ReverseMap();
+
+            CreateMap<Client, ClientDTO>()
+            .ForMember(m => m.Id,
+                        vm => vm.MapFrom(
+                            v => v.Id))
+            .ForMember(m => m.FullName,
+                        vm => vm.MapFrom(
+                            v => v.FullName))
+            .ForMember(m => m.InitDate,
+                        vm => vm.MapFrom(
+                            v => v.InitDate))
+            .ForMember(m => m.Salary,
+                        vm => vm.MapFrom(
+                            v => v.Salary))
+            .ForMember(m => m.Charge,
+                        vm => vm.MapFrom(
+                            v => v.Charge))
+            .ReverseMap();
+
+            CreateMap<RiskType, RiskTypeDTO>()
+            .ForMember(m => m.Id,
+                        vm => vm.MapFrom(
+                            v => v.Id))
+            .ForMember(m => m.Risk,
+                        vm => vm.MapFrom(
+                            v => v.Risk))
+            .ReverseMap();
+
+            CreateMap<InsuranceType, InsuranceTypeDTO>()
+            .ForMember(m => m.Id,
+                        vm => vm.MapFrom(
+                            v => v.Id))
+            .ForMember(m => m.Name,
+                        vm => vm.MapFrom(
+                            v => v.Name))
+            .ReverseMap();
+
 
         }
     }
