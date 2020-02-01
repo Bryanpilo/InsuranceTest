@@ -14,16 +14,16 @@ const LoginOrRegister = (props) => {
   return (
     <div>
       <Row>
-        <Col sm={10}>
+        <Col sm={8}>
           <Image src="https://source.unsplash.com/random" className="imgLoginOrRegister" />
         </Col>
-        <Col sm={2}>
-          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-            <Tab eventKey="home" title="Home">
-              <h1>ino</h1>
+        <Col sm={4}>
+          <Tabs defaultActiveKey="Login" id="uncontrolled-tab-example">
+            <Tab eventKey="Login" title="Login">
+              <Login />
             </Tab>
-            <Tab eventKey="profile" title="Profile">
-              <h1>ino</h1>
+            <Tab eventKey="Register" title="Register">
+              <Register />
             </Tab>
           </Tabs>
         </Col>
