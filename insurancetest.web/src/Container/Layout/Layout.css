@@ -1,0 +1,24 @@
+.main-container{
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 48px);/*48px Navbar height*/
+  display: flex;
+}
+.content-column{
+  width: 100%;
+}
+.slideMenuExpanded, .slideMenuContracted{
+  padding: 15px;
+}
+.slideMenuExpanded{
+  margin-Left: 260px;
+}
+.slideMenuContracted{
+  margin-Left: 80px;
+}
+
+.sizeTableModal{
+  max-height: 40vh;
+  overflow: auto;
+}
+
