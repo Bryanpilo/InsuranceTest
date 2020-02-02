@@ -83,14 +83,12 @@ const Insurance = (props) => {
   // }
   const getAllInsuranceById = (idInsurance, idClient) => {
 
-    console.log(idInsurance + " - "+idClient)
+    console.log(idInsurance + " - " + idClient)
 
     const queryObj = {
       id: idInsurance,
       clientId: idClient
     };
-    
-    console.log(queryObj)
 
     http.post(
       http.url + 'Insurance/getInsurangeBYIds', queryObj,
@@ -109,6 +107,10 @@ const Insurance = (props) => {
           dispatch(InsuranceAction.setInitDate(result.data.initDate));
           dispatch(InsuranceAction.setPrice(result.data.price));
           dispatch(InsuranceAction.setRiskId(result.data.riskId));
+
+          setStateModal({
+            modalShow: true
+          });
         })
       .catch(function (error) {
         console.log(error)
@@ -130,10 +132,39 @@ const Insurance = (props) => {
       })
       .then(
         result => {
-          console.log(result.data)
           setStateInsurance({
             Insurance: result.data
           });
+        })
+      .catch(function (error) {
+        console.log(error)
+      });
+  }
+
+  const openNewInsuranceModal = () => {
+    setStateModal({
+      modalShow: true
+    });
+  }
+
+  const deleteInsurance = (idInsurance) => {
+    console.log(idInsurance)
+    const queryObj = {
+      id: idInsurance
+    };
+
+    console.log(http.toQuery(queryObj))
+
+    http.delete(
+      http.url + 'Insurance?'+http.toQuery(queryObj),
+      {
+        headers: {
+          'Authorization': `Bearer ${loginData.token}`,
+        }
+      })
+      .then(
+        result => {
+          getAllInsurance();
         })
       .catch(function (error) {
         console.log(error)
@@ -159,7 +190,7 @@ const Insurance = (props) => {
           <h1>Polizas</h1>
           <Button value={" - "}
             variant={"outline-success"}
-          // onClick={() => deleteDocument(i)}
+            onClick={() => openNewInsuranceModal()}
           >
             Crear Poliza
           </Button>
@@ -196,13 +227,13 @@ const Insurance = (props) => {
                           onClick={() => getAllInsuranceById(Insurance.id, Insurance.clientId)}
                         >
                           Editar
-                      </Button>
+                        </Button>
                         <Button value={" - "}
                           variant={"outline-danger"}
-                        // onClick={() => deleteDocument(i)}
+                          onClick={() => deleteInsurance(Insurance.id)}
                         >
                           Cancelar
-                      </Button>
+                        </Button>
                       </td>
                     </tr>
                   )

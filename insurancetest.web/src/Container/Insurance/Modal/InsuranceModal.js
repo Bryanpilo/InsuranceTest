@@ -8,12 +8,12 @@ import { toast } from "react-toastify";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 //actions
-// import clientMaintenanceAction from "../../../Actions/ClientMaintenanceAction";
+import insurance from "../../../Redux/Action/InsuranceAction";
 //Services
 import http from "../../../Services/HttpService";
 //Helpers
 //Containers
-// import GeneralTab from "../Tabs/GeneralTab";
+import GeneralTab from "../Tabs/GeneralTab";
 // import DocumentExoneratedTab from "../Tabs/DocumentExonerated";
 
 const ClientModal = props => {
@@ -26,7 +26,7 @@ const ClientModal = props => {
 
   const CloseModalAction = () => {
     props.onHide();
-    // dispatch(clientMaintenanceAction.cleanData());
+    dispatch(insurance.clearData());
   };
 
   // const validData = () => {
@@ -88,7 +88,7 @@ const ClientModal = props => {
             <Col sm={12}>
               <Tabs defaultActiveKey="General" id="uncontrolled-tab-example">
                 <Tab eventKey="General" title="General">
-                  {/* <GeneralTab></GeneralTab> */}
+                  <GeneralTab></GeneralTab>
                 </Tab>
                 <Tab
                   eventKey="InsuranceTypes"
@@ -103,13 +103,11 @@ const ClientModal = props => {
       </Modal.Body>
       <Modal.Footer>
         <Button
-          className="btn-ey-classic-1 btn-ey-secondary"
           onClick={CloseModalAction}
         >
           Cancel
         </Button>
         <Button
-          className="btn-ey-classic-1 btn-ey-yellow"
           // onClick={updateClientLegalEntity}
           // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
         >

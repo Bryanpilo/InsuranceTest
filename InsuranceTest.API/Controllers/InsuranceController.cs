@@ -55,6 +55,18 @@ namespace InsuranceTest.API.Controllers
             return Ok(values);
         }
 
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var values = _insuranceBL.deleteInsurance(id);
+
+            if (values == false)
+                return StatusCode(204);
+
+
+            return Ok(values);
+        }
+
 
     }
 }
