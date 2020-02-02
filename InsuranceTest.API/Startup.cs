@@ -41,7 +41,7 @@ namespace InsuranceTest.API
         {
             //we add the data context
             //and we are going to add the db connection, using the conextion string of the appsetting
-            services.AddDbContext<DataContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(opts => opts.UseSqlServer("server=CR2265198W3;database=InsuranceTest;integrated security = true"));
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
@@ -62,7 +62,7 @@ namespace InsuranceTest.API
                     {
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
-                            .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                            .GetBytes("Super Secret Project")),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };

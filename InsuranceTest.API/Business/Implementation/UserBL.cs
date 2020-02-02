@@ -32,14 +32,9 @@ namespace InsuranceTest.API.Business.Implementation
         }
         public UserDTO Login(UserLoginDTO userLoginDTO)
         {
-            var user = _userRepository.GetSingle(x => x.Username == userLoginDTO.username.ToLower());
+            var user = _userRepository.GetSingle(x => x.Username == userLoginDTO.username.ToLower() && x.Password==userLoginDTO.password.ToLower());
 
             if (user == null)
-            {
-                return null;
-            }
-
-            if (!VerifyPasswordHash(userLoginDTO.password, user.PasswordHash, user.PasswordSalt))
             {
                 return null;
             }
@@ -49,7 +44,7 @@ namespace InsuranceTest.API.Business.Implementation
                 new Claim(ClaimTypes.Name, user.Username)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Super Secret Project"));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -70,60 +65,6 @@ namespace InsuranceTest.API.Business.Implementation
             // var va= _mapper.Map<IEnumerable<UserDTO>>(List);
 
             return userDTO;
-        }
-
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
-            {
-
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < computedHash.Length; i++)
-                {
-                    if (computedHash[i] != passwordHash[i])
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        public bool Register(UserRegisterDTO userRegisterDTO)
-        {
-            userRegisterDTO.username = userRegisterDTO.username.ToLower();
-
-            if (_userRepository.Exist(x => x.Username == userRegisterDTO.username))
-            {
-                return false;
-            }
-
-            byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(userRegisterDTO.password, out passwordHash, out passwordSalt);
-
-            User user = new User
-            {
-                Username = userRegisterDTO.username,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
-            };
-
-            _userRepository.Add(user);
-
-            _unitOfWork.Save();
-
-            return true;
-        }
-
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
-
         }
 
         public FullUserDTO fullUser(string username)

@@ -19,6 +19,7 @@ namespace InsuranceTest.API.Controllers
 
 
         [HttpGet("getAllClient")]
+        [AllowAnonymous]
         public IActionResult getAllClient()
         {
             var clients = _clientBL.getAllClients();

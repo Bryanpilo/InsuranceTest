@@ -20,28 +20,20 @@ namespace InsuranceTest.API.Business.Implementation
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly InsuranceValidations _insuranceValidations;
 
         public InsuranceBL(IUnitOfWork unitOfWork,
                              IMapper mapper,
                              IConfiguration configuration,
                              IInsuranceRepository insuranceRepository,
-                             InsuranceValidations insuranceValidations,
                              IInsuranceTypeRepository insuranceTypeRepository,
                               IInsurance_InsuranceTypeRepository insurance_InsuranceTypeRepository)
         {
             _insuranceTypeRepository = insuranceTypeRepository;
             _insurance_InsuranceTypeRepository = insurance_InsuranceTypeRepository;
-            _insuranceValidations= insuranceValidations;
             _insuranceRepository = insuranceRepository;
             _configuration = configuration;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-
-        }
-
-        public InsuranceBL()
-        {
 
         }
 

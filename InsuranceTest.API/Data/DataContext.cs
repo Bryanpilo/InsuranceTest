@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using InsuranceTest.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,23 @@ namespace InsuranceTest.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(
+                    new[]
+                    {
+                        new User
+                        {
+                            Id=1,
+                            Username="admin",
+                            Password="admin123"
+                        },
+                        new User
+                        {
+                            Id=2,
+                            Username="Josue",
+                            Password="admin123"
+                        }
+                    }
+                );
             modelBuilder.Entity<Insurance>().HasData(
                     new[]{
                         new Insurance
@@ -235,30 +253,30 @@ namespace InsuranceTest.API.Data
                     }
                 );
 
-                modelBuilder.Entity<RiskType>().HasData(
-                    new[]{
-                         new RiskType
+            modelBuilder.Entity<RiskType>().HasData(
+                new[]{
+                        new RiskType
+                    {
+                            Id= 1,
+                        Risk = "Bajo"
+                    },
+                        new RiskType
                         {
-                             Id= 1,
-                            Risk = "Bajo"
+                            Id= 2,
+                            Risk = "Medio"
                         },
-                         new RiskType
-                         {
-                              Id= 2,
-                             Risk = "Medio"
-                         },
-                         new RiskType
-                         {
-                              Id= 3,
-                             Risk = "Medio-alto"
-                         },
-                         new RiskType
-                         {
-                              Id= 4,
-                             Risk = "Alto"
-                         }
-                    }
-                );
+                        new RiskType
+                        {
+                            Id= 3,
+                            Risk = "Medio-alto"
+                        },
+                        new RiskType
+                        {
+                            Id= 4,
+                            Risk = "Alto"
+                        }
+                }
+            );
 
         }
 

@@ -4,6 +4,7 @@ using InsuranceTest.API.Business.Interface;
 using InsuranceTest.API.DTO.User;
 using InsuranceTest.API.DTO.Client;
 using InsuranceTest.API.DTO.Insurance;
+using InsuranceTest.API.Helper;
 
 namespace InsuranceTest.API.Controllers
 {
@@ -13,16 +14,28 @@ namespace InsuranceTest.API.Controllers
     public class InsuranceController : ControllerBase
     {
         private readonly IInsuranceBL _insuranceBL;
-        
-        public InsuranceController(IInsuranceBL insuranceBL)
+        private readonly InsuranceValidations _insuranceValidations;
+
+        public InsuranceController(IInsuranceBL insuranceBL,
+                             InsuranceValidations insuranceValidations)
         {
             _insuranceBL = insuranceBL;
+            _insuranceValidations = insuranceValidations;
         }
 
         [HttpPost("CreateInsurance")]
         public IActionResult CreateInsurance(InsuranceDTO insuranceDTO)
         {
-            var values = _insuranceBL.addInsurance(insuranceDTO);
+            var values = false;
+            if(_insuranceValidations.IsInsuranceHighRiskValidated(insuranceDTO.RiskId, insuranceDTO.Coverage))
+            {
+                values = _insuranceBL.addInsurance(insuranceDTO);
+            }
+            else
+            {
+                return BadRequest();
+            }
+                 
 
             if (values == false)
                 return Unauthorized();
@@ -34,7 +47,16 @@ namespace InsuranceTest.API.Controllers
         [HttpPost("UpdateInsurance")]
         public IActionResult UpdateInsurance(InsuranceDTO insuranceDTO)
         {
-            var values = _insuranceBL.updateInsurance(insuranceDTO);
+            var values = false;
+            if (_insuranceValidations.IsInsuranceHighRiskValidated(insuranceDTO.RiskId, insuranceDTO.Coverage))
+            {
+                values = _insuranceBL.updateInsurance(insuranceDTO);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
 
             if (values == false)
                 return Unauthorized();

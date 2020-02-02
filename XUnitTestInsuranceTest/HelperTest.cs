@@ -1,11 +1,9 @@
-using InsuranceTest.API.Business.Implementation;
 using InsuranceTest.API.Helper;
-using Moq;
 using Xunit;
 
 namespace XUnitTestInsuranceTest
 {
-    public class UserTest
+    public class HelperTest
     {
 
         [Fact] 

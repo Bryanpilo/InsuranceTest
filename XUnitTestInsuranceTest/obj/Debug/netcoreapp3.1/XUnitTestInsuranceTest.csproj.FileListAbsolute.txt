@@ -139,3 +139,5 @@ C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\obj\Debug\netc
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\obj\Debug\netcoreapp3.1\XUnitTestInsuranceTest.pdb
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\InsuranceTest.API.pdb
+C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.TestHost.dll

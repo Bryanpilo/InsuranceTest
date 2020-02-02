@@ -4,14 +4,16 @@ using InsuranceTest.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InsuranceTest.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200202230724_SeedUserV2")]
+    partial class SeedUserV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -378,12 +380,6 @@ namespace InsuranceTest.API.Migrations
                             Id = 1,
                             Password = "admin123",
                             Username = "admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Password = "admin123",
-                            Username = "Josue"
                         });
                 });
 

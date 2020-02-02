@@ -9,6 +9,7 @@
       "XUnitTestInsuranceTest/1.0.0": {
         "dependencies": {
           "InsuranceTest.API": "1.0.0",
+          "Microsoft.AspNetCore.TestHost": "3.1.1",
           "Microsoft.NET.Test.Sdk": "16.2.0",
           "Moq": "4.13.1",
           "coverlet.collector": "1.0.1",
@@ -70,6 +71,17 @@
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.100.119.61510"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.TestHost/3.1.1": {
+        "dependencies": {
+          "System.IO.Pipelines": "4.7.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.TestHost.dll": {
             "assemblyVersion": "3.1.1.0",
             "fileVersion": "3.100.119.61510"
           }
@@ -1150,6 +1162,7 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.IO.Pipelines/4.7.0": {},
       "System.Linq/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1900,6 +1913,13 @@
       "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.1",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.3.1.1.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.TestHost/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nStBkNXXW+JXtQefliFhOXHltL74lsMEQ6x1IjqP0fWhAuBZ0CIZvzvR58Wod+h85hne2Pn8kUd7huDUSB1pyg==",
+      "path": "microsoft.aspnetcore.testhost/3.1.1",
+      "hashPath": "microsoft.aspnetcore.testhost.3.1.1.nupkg.sha512"
+    },
     "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
       "type": "package",
       "serviceable": true,
@@ -2522,6 +2542,13 @@
       "sha512": "sha512-6QOb2XFLch7bEc4lIcJH49nJN2HV+OC3fHDgsLVsBVBk3Y4hFAnOBGzJ2lUu7CyDDFo9IBWkSsnbkT6IBwwiMw==",
       "path": "system.io.filesystem.primitives/4.3.0",
       "hashPath": "system.io.filesystem.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Pipelines/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-S0L7oyWyQdVzD+5xIvcC8h44Vc+FY+qXDCLRh2+YsuBDORNphcxNX+tXR6ByLMjQ/7jDaXxsYBF6qbAr7ZIaFw==",
+      "path": "system.io.pipelines/4.7.0",
+      "hashPath": "system.io.pipelines.4.7.0.nupkg.sha512"
     },
     "System.Linq/4.3.0": {
       "type": "package",

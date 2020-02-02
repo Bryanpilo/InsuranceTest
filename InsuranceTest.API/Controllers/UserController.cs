@@ -30,20 +30,6 @@ namespace InsuranceTest.API.Controllers
             return Ok(values);
         }
 
-        //POST api/user/register
-        [AllowAnonymous]
-        [HttpPost("register")]
-        public IActionResult Register(UserRegisterDTO userRegisterDTO)
-        {
-            var user = _userBL.Register(userRegisterDTO);
-
-            if (!user)
-            {
-                return StatusCode(409);
-            }
-            return StatusCode(201);
-        }
-
         //GET api/user/username
         [HttpGet("{username}")]
         public IActionResult getUser(string username)
