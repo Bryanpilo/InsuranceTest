@@ -7,6 +7,7 @@ namespace InsuranceTest.API.Business.Interface
     public interface IInsuranceBL
     {
         IEnumerable<InsuranceDTO> getAllInsuranceByClientID(int Id);
+        InsuranceDTO getAllInsuranceByInsuranceIdAndClientId(int Id, int clientId);
 
         bool addInsurance(InsuranceDTO insuranceDTO);
 

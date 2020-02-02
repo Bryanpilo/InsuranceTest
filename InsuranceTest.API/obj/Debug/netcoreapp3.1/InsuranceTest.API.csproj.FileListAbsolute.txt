@@ -48,7 +48,6 @@ C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\bin\Debug\netcoreap
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\InsuranceTest.API.csprojAssemblyReference.cache
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\staticwebassets\InsuranceTest.API.StaticWebAssets.Manifest.cache
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\staticwebassets\InsuranceTest.API.StaticWebAssets.xml
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\InsuranceTest.API.MvcApplicationPartsAssemblyInfo.cache
@@ -58,3 +57,4 @@ C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreap
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\InsuranceTest.API.csproj.CopyComplete
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\InsuranceTest.API.dll
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\InsuranceTest.API.pdb
+C:\Users\yh684jy\Desktop\GAP\InsuranceTest\InsuranceTest.API\obj\Debug\netcoreapp3.1\InsuranceTest.API.csprojAssemblyReference.cache

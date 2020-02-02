@@ -15,7 +15,8 @@ namespace InsuranceTest.API.DTO.Client
         public int CoverageMonths { get; set; }
         public DateTime InitDate { get; set; }
         public decimal Price { get; set; }
-        public string RiskName { get; set; }
+        public int RiskId { get; set; }
+        public int ClientId { get; set; }
 
 
     }

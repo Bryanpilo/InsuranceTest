@@ -3,8 +3,6 @@ import { Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { withRouter } from "react-router-dom";
 //Styling
-import "../Client.css";
-import "react-datepicker/dist/react-datepicker.css";
 //Services
 import http from "../../../Services/HttpService";
 //redux

@@ -6,7 +6,8 @@ import InsuranceModal from './Modal/InsuranceModal'
 //redux
 import { useSelector, useDispatch } from "react-redux";
 //actions
-import LoginAction from "../../Redux/Action/LoginAction";
+// import LoginAction from "../../Redux/Action/LoginAction";
+import InsuranceAction from "../../Redux/Action/InsuranceAction";
 //hoc
 import Aux from '../../Hoc/ContentWork';
 //Styling
@@ -14,6 +15,8 @@ import Aux from '../../Hoc/ContentWork';
 import './Insurance.css'
 
 const Insurance = (props) => {
+
+  const dispatch = useDispatch();
 
   const loginData = useSelector(state => state.login)
 
@@ -78,6 +81,39 @@ const Insurance = (props) => {
   //       console.log(error)
   //     });
   // }
+  const getAllInsuranceById = (idInsurance, idClient) => {
+
+    console.log(idInsurance + " - "+idClient)
+
+    const queryObj = {
+      id: idInsurance,
+      clientId: idClient
+    };
+    
+    console.log(queryObj)
+
+    http.post(
+      http.url + 'Insurance/getInsurangeBYIds', queryObj,
+      {
+        headers: {
+          'Authorization': `Bearer ${loginData.token}`,
+        }
+      })
+      .then(
+        result => {
+          dispatch(InsuranceAction.setId(result.data.id));
+          dispatch(InsuranceAction.setName(result.data.name));
+          dispatch(InsuranceAction.setDescription(result.data.description));
+          dispatch(InsuranceAction.setCoverage(result.data.coverage));
+          dispatch(InsuranceAction.setCoverageMonths(result.data.coverageMonths));
+          dispatch(InsuranceAction.setInitDate(result.data.initDate));
+          dispatch(InsuranceAction.setPrice(result.data.price));
+          dispatch(InsuranceAction.setRiskId(result.data.riskId));
+        })
+      .catch(function (error) {
+        console.log(error)
+      });
+  }
 
   const getAllInsurance = (props) => {
 
@@ -135,10 +171,12 @@ const Insurance = (props) => {
             <Table>
               <thead>
                 <tr>
-                  <th> Nombre Completo </th>
-                  <th> Fecha de Inicio </th>
-                  <th> Salario </th>
-                  <th> Puesto </th>
+                  <th> Nombre </th>
+                  <th> Descripción </th>
+                  <th> Convertura (%) </th>
+                  <th> Meses de convertura </th>
+                  <th> Fecha de inicio </th>
+                  <th> Precio </th>
                   <th> Acciones </th>
                 </tr>
               </thead>
@@ -147,15 +185,23 @@ const Insurance = (props) => {
                   return (
                     <tr key={Insurance.id}>
                       <td>{Insurance.name}</td>
+                      <td>{Insurance.description}</td>
+                      <td>{Insurance.coverage}</td>
+                      <td>{Insurance.coverageMonths}</td>
                       <td>{Insurance.initDate}</td>
                       <td>{Insurance.price}</td>
-                      <td>{Insurance.coverage}</td>
                       <td>
                         <Button value={" - "}
                           variant={"outline-success"}
+                          onClick={() => getAllInsuranceById(Insurance.id, Insurance.clientId)}
+                        >
+                          Editar
+                      </Button>
+                        <Button value={" - "}
+                          variant={"outline-danger"}
                         // onClick={() => deleteDocument(i)}
                         >
-                          Seguros
+                          Cancelar
                       </Button>
                       </td>
                     </tr>

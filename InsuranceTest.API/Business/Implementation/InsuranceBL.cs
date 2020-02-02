@@ -79,5 +79,11 @@ namespace InsuranceTest.API.Business.Implementation
             return _mapper.Map<IEnumerable<InsuranceDTO>>(Insurance.AsEnumerable());
         }
 
+        public InsuranceDTO getAllInsuranceByInsuranceIdAndClientId(int Id, int clientId)
+        {
+            var insurance = _insuranceRepository.GetSingle(x => x.ClientId == clientId && x.Id==Id);
+
+            return _mapper.Map<InsuranceDTO>(insurance);
+        }
     }
 }

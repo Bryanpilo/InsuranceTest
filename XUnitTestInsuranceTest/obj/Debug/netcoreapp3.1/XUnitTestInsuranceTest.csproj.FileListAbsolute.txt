@@ -131,7 +131,6 @@ C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netc
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\InsuranceTest.API.dll
-C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\bin\Debug\netcoreapp3.1\InsuranceTest.API.pdb
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\obj\Debug\netcoreapp3.1\XUnitTestInsuranceTest.csprojAssemblyReference.cache
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\obj\Debug\netcoreapp3.1\XUnitTestInsuranceTest.AssemblyInfoInputs.cache
 C:\Users\yh684jy\Desktop\GAP\InsuranceTest\XUnitTestInsuranceTest\obj\Debug\netcoreapp3.1\XUnitTestInsuranceTest.AssemblyInfo.cs

@@ -85,6 +85,7 @@ namespace InsuranceTest.API
             services.AddScoped<IInsuranceTypeBL, InsuranceTypeBL>();
             services.AddScoped<IRiskTypeBL, RiskTypeBL>();
             services.AddScoped<IClientBL, ClientBL>();
+            services.AddScoped<InsuranceValidations, InsuranceValidations>();
 
         }
 

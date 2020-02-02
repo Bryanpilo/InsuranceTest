@@ -90,9 +90,12 @@ namespace InsuranceTest.API.AutoMapper
             .ForMember(m => m.Price,
                         vm => vm.MapFrom(
                             v => v.Price))
-            .ForMember(m => m.RiskName,
+            .ForMember(m => m.RiskId,
                         vm => vm.MapFrom(
-                            v => v.RiskType.Risk))
+                            v => v.RiskTypeId))
+            .ForMember(m => m.ClientId,
+                        vm => vm.MapFrom(
+                            v => v.ClientId))
             .ReverseMap();
 
         }
