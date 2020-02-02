@@ -91,12 +91,13 @@ const Insurance = (props) => {
     };
 
     http.post(
-      http.url + 'Insurance/getInsurangeBYIds', queryObj,
-      {
-        headers: {
-          'Authorization': `Bearer ${loginData.token}`,
-        }
-      })
+      http.url + 'Insurance/getInsurangeBYIds', queryObj,http.setJWT(loginData.token)
+      // {
+      //   headers: {
+      //     'Authorization': `Bearer ${loginData.token}`,
+      //   }
+      // }
+      )
       .then(
         result => {
           dispatch(InsuranceAction.setId(result.data.id));
@@ -124,12 +125,13 @@ const Insurance = (props) => {
     };
 
     http.post(
-      http.url + 'Insurance', queryObj,
-      {
-        headers: {
-          'Authorization': `Bearer ${loginData.token}`,
-        }
-      })
+      http.url + 'Insurance', queryObj,http.setJWT(loginData.token)
+      // {
+      //   headers: {
+      //     'Authorization': `Bearer ${loginData.token}`,
+      //   }
+      // }
+      )
       .then(
         result => {
           setStateInsurance({
@@ -182,8 +184,7 @@ const Insurance = (props) => {
       <InsuranceModal
         show={stateModal.modalShow}
         onHide={modalClose}
-      // editm={stateModal.userEdit}
-      // onExited={() => GetData(StateTableParameters.text)}
+      onExited={() => getAllInsurance()}
       />
       <Row>
         <Col>
