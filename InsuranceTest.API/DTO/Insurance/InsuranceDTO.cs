@@ -17,6 +17,7 @@ namespace InsuranceTest.API.DTO.Client
         public decimal Price { get; set; }
         public int RiskId { get; set; }
         public int ClientId { get; set; }
+        public List<InsuranceTypeDTO> insuranceTypeDTOs { get; set; }
 
 
     }

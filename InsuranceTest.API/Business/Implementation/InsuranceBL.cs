@@ -15,6 +15,8 @@ namespace InsuranceTest.API.Business.Implementation
     public class InsuranceBL : IInsuranceBL
     {
         private readonly IInsuranceRepository _insuranceRepository;
+        private readonly IInsuranceTypeRepository _insuranceTypeRepository;
+        private readonly IInsurance_InsuranceTypeRepository _insurance_InsuranceTypeRepository;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -24,8 +26,12 @@ namespace InsuranceTest.API.Business.Implementation
                              IMapper mapper,
                              IConfiguration configuration,
                              IInsuranceRepository insuranceRepository,
-                             InsuranceValidations insuranceValidations)
+                             InsuranceValidations insuranceValidations,
+                             IInsuranceTypeRepository insuranceTypeRepository,
+                              IInsurance_InsuranceTypeRepository insurance_InsuranceTypeRepository)
         {
+            _insuranceTypeRepository = insuranceTypeRepository;
+            _insurance_InsuranceTypeRepository = insurance_InsuranceTypeRepository;
             _insuranceValidations= insuranceValidations;
             _insuranceRepository = insuranceRepository;
             _configuration = configuration;
@@ -49,13 +55,25 @@ namespace InsuranceTest.API.Business.Implementation
                 CoverageMonths = insuranceDTO.CoverageMonths,
                 InitDate = insuranceDTO.InitDate,
                 Price = insuranceDTO.Price,
-                // ClientId = 1,
-                // RiskTypeId = insuranceDTO.RiskType.Id
-                // RiskType = _mapper.Map<RiskType>()
-                // InsuranInsurance_InsuranceTypeceTypes = _mapper.Map<ICollection<Insurance_InsuranceType>>(insuranceDTO.InsuranceTypes.ToList())
-            };
+                ClientId = insuranceDTO.ClientId,
+                RiskTypeId = insuranceDTO.RiskId
+                };
 
             _insuranceRepository.Add(insurance);
+
+            _unitOfWork.Save();
+
+            foreach(var insuranceType in insuranceDTO.insuranceTypeDTOs)
+            {
+                Insurance_InsuranceType insurance_InsuranceType = new Insurance_InsuranceType
+                {
+                    InsuranceId = insurance.Id,
+                    InsuranceTypeId = insuranceType.Id
+                };
+
+                _insurance_InsuranceTypeRepository.Add(insurance_InsuranceType);
+
+            }
 
             _unitOfWork.Save();
 
@@ -82,8 +100,19 @@ namespace InsuranceTest.API.Business.Implementation
         public InsuranceDTO getAllInsuranceByInsuranceIdAndClientId(int Id, int clientId)
         {
             var insurance = _insuranceRepository.GetSingle(x => x.ClientId == clientId && x.Id==Id);
+            var data = _mapper.Map<InsuranceDTO>(insurance);
 
-            return _mapper.Map<InsuranceDTO>(insurance);
+            var insurance_insuranceType = _insurance_InsuranceTypeRepository.GetAll(x=> x.InsuranceId==Id).ToList();
+            List<InsuranceTypeDTO> InsuranceTypeList = new List<InsuranceTypeDTO>();
+            foreach(var insuranceType in insurance_insuranceType)
+            {
+                var InsuranT = _insuranceTypeRepository.GetSingle(x => x.Id == insuranceType.InsuranceTypeId);
+                InsuranceTypeList.Add(_mapper.Map<InsuranceTypeDTO>(InsuranT));
+            }
+
+            data.insuranceTypeDTOs = InsuranceTypeList;
+
+            return data;
         }
     }
 }

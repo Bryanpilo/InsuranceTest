@@ -8,7 +8,7 @@ import http from "../../../Services/HttpService";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 //actions
-// import clientAction from "../../../Actions/ClientMaintenanceAction";
+import insuranceAction from "../../../Redux/Action/InsuranceAction";
 //Helpers
 
 const GeneralTab = props => {
@@ -17,27 +17,57 @@ const GeneralTab = props => {
   const dispatch = useDispatch();
 
   const insurance = useSelector(state => state.insurance);
+  const loginData = useSelector(state => state.login);
+
+  const [stateRisk, setStateRisk] = useState({
+    Risks: []
+  })
 
   //#region set methods
 
-  // const specialTax = event => {
-  //   dispatch(clientAction.SpecialTax(event.target.value));
-  // };
+  const setName = event => {
+    dispatch(insuranceAction.setName(event.target.value));
+  };
 
-  // const HasPurchaseOrder = event => {
-  //   dispatch(
-  //     clientAction.HasPurchaseOrder(!clientMaintenance.HAS_PURCHASE_ORDER)
-  //   );
-  // };
+  const setDescription = event => {
+    dispatch(insuranceAction.setDescription(event.target.value));
+  };
 
-  // const TaxRetention = event => {
-  //   dispatch(clientAction.TaxRetention(event.target.value));
-  // };
+  const setCoverture = event => {
+    dispatch(insuranceAction.setCoverage(event.target.value));
+  };
 
-  // const IsExempt = event => {
-  //   dispatch(clientAction.IsExempt(!clientMaintenance.IS_EXEMPT));
-  // };
+  const setCoverageMonths = event => {
+    dispatch(insuranceAction.setCoverageMonths(event.target.value));
+  };
 
+  const setDateInit = event => {
+    dispatch(insuranceAction.setInitDate(event.target.value));
+  };
+
+  const setPrice = event => {
+    dispatch(insuranceAction.setPrice(event.target.value));
+  };
+
+  const onClickRisk = event => {
+    dispatch(insuranceAction.setRiskId(event.target.value));
+  };
+
+
+  const getAllRisks = (props) => {
+
+    http.get(
+      http.url + 'RiskType/getAllRiskType', http.setJWT(loginData.token))
+      .then(
+        result => {
+          setStateRisk({
+            Risks: result.data
+          });
+        })
+      .catch(function (error) {
+        console.log(error)
+      });
+  }
 
   //#endregion
 
@@ -67,9 +97,11 @@ const GeneralTab = props => {
   //     });
   // };
 
-  // useEffect(() => {
-  //   GetDataClientType();
-  // }, []);
+  useEffect(() => {
+    getAllRisks();
+    if (insurance.InitDate !== null)
+      dispatch(insuranceAction.setInitDate(insurance.InitDate.split("T")[0]));
+  }, []);
 
   // //#endregion
 
@@ -84,7 +116,7 @@ const GeneralTab = props => {
                 type="Text"
                 placeholder={"Nombre"}
                 value={insurance.Name}
-                // onChange={specialTax}
+                onChange={setName}
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a special tax percentage.
@@ -98,7 +130,7 @@ const GeneralTab = props => {
                 type="Text"
                 placeholder={"Descripción"}
                 value={insurance.Description}
-                // onChange={specialTax}
+                onChange={setDescription}
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a special tax percentage.
@@ -107,14 +139,14 @@ const GeneralTab = props => {
           </Col>
         </Row>
         <Row>
-        <Col>
+          <Col>
             <Form.Group>
               <Form.Label>Covertura</Form.Label>
               <Form.Control
-                type="Text"
+                type="number"
                 placeholder={"Covertura"}
                 value={insurance.Coverage}
-                // onChange={specialTax}
+                onChange={setCoverture}
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a special tax percentage.
@@ -125,10 +157,10 @@ const GeneralTab = props => {
             <Form.Group>
               <Form.Label>Meses de covertura</Form.Label>
               <Form.Control
-                type="Text"
+                type="number"
                 placeholder={"Meses de covertura"}
                 value={insurance.CoverageMonths}
-                // onChange={specialTax}
+                onChange={setCoverageMonths}
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a special tax percentage.
@@ -137,14 +169,14 @@ const GeneralTab = props => {
           </Col>
         </Row>
         <Row>
-        <Col>
+          <Col>
             <Form.Group>
               <Form.Label>Fecha de inicio</Form.Label>
               <Form.Control
-                type="Text"
+                type="date"
                 placeholder={"Fecha de inicio"}
                 value={insurance.InitDate}
-                // onChange={specialTax}
+                onChange={setDateInit}
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a special tax percentage.
@@ -155,10 +187,10 @@ const GeneralTab = props => {
             <Form.Group>
               <Form.Label>Precio</Form.Label>
               <Form.Control
-                type="Text"
+                type="number"
                 placeholder={"Precio"}
                 value={insurance.Price}
-                // onChange={specialTax}
+                onChange={setPrice}
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a special tax percentage.
@@ -167,17 +199,28 @@ const GeneralTab = props => {
           </Col>
         </Row>
         <Row>
-        <Col>
+          <Col>
             <Form.Group>
-              <Form.Label>Riesgo</Form.Label>
+              <Form.Label>Tipo de riesgo</Form.Label>
               <Form.Control
-                type="Text"
-                placeholder={"Riesgo"}
-                value={insurance.RiskId}
-                // onChange={specialTax}
-              />
+                // isInvalid={stateFiscalVerificator.isValid === false ? true : false}
+                as="select"
+                onChange={onClickRisk}
+                id="select"
+              // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
+              >
+                <option key="null" value="null">Seleccione un tipo</option>
+                {stateRisk.Risks.map((risk, i) => {
+                  return (<option
+                    selected={risk.id === insurance.RiskId ? true : false}
+                    key={i}
+                    value={risk.id}>{risk.risk}
+                  </option>)
+
+                })}
+              </Form.Control>
               <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
+                Please select a verifying fiscal.
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
@@ -191,7 +234,7 @@ const GeneralTab = props => {
           </Col>
         </Row>
       </Col>
-    </Row>
+    </Row >
   );
 };
 

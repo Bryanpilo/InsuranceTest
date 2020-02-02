@@ -17,7 +17,7 @@ namespace InsuranceTest.API.Controllers
             _riskTypeBL = riskTypeBL;
         }
 
-        [HttpPost("getAllRiskType")]
+        [HttpGet("getAllRiskType")]
         public IActionResult getAllRiskType()
         {
             var riskTypes = _riskTypeBL.getAllRyskType();

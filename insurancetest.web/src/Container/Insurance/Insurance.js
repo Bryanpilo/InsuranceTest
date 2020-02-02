@@ -3,30 +3,22 @@ import { Button, Row, Col, Table } from 'react-bootstrap';
 import http from "../../Services/HttpService";
 import 'react-toastify/dist/ReactToastify.css';
 import InsuranceModal from './Modal/InsuranceModal'
+import { toast } from "react-toastify"; 
 //redux
 import { useSelector, useDispatch } from "react-redux";
 //actions
-// import LoginAction from "../../Redux/Action/LoginAction";
 import InsuranceAction from "../../Redux/Action/InsuranceAction";
 //hoc
 import Aux from '../../Hoc/ContentWork';
 //Styling
-// import '../../Assets/css/site.css'
 import './Insurance.css'
 
 const Insurance = (props) => {
+  toast.configure();
 
   const dispatch = useDispatch();
 
   const loginData = useSelector(state => state.login)
-
-  const [stateRisk, setStateRisk] = useState({
-    Risks: []
-  })
-
-  const [stateInsuranceTypes, setStateInsuranceTypes] = useState({
-    InsuranceTypes: []
-  })
 
   const [stateInsurance, setStateInsurance] = useState({
     Insurance: []
@@ -42,45 +34,6 @@ const Insurance = (props) => {
       modalShow: false
     });
 
-  // const getAllRisks = (props) => {
-
-  //   http.get(
-  //     http.url + 'Client/getAllClient',
-  //     {
-  //       headers: {
-  //         'Authorization': `Bearer ${loginData.token}`,
-  //       }
-  //     })
-  //     .then(
-  //       result => {
-  //         setStateClient({
-  //           Clients: result.data
-  //         });
-  //       })
-  //     .catch(function (error) {
-  //       console.log(error)
-  //     });
-  // }
-
-  // const getAllInsuranceTypes = (props) => {
-
-  //   http.get(
-  //     http.url + 'Client/getAllClient',
-  //     {
-  //       headers: {
-  //         'Authorization': `Bearer ${loginData.token}`,
-  //       }
-  //     })
-  //     .then(
-  //       result => {
-  //         setStateClient({
-  //           Clients: result.data
-  //         });
-  //       })
-  //     .catch(function (error) {
-  //       console.log(error)
-  //     });
-  // }
   const getAllInsuranceById = (idInsurance, idClient) => {
 
     console.log(idInsurance + " - " + idClient)
@@ -91,13 +44,7 @@ const Insurance = (props) => {
     };
 
     http.post(
-      http.url + 'Insurance/getInsurangeBYIds', queryObj,http.setJWT(loginData.token)
-      // {
-      //   headers: {
-      //     'Authorization': `Bearer ${loginData.token}`,
-      //   }
-      // }
-      )
+      http.url + 'Insurance/getInsurangeBYIds', queryObj,http.setJWT(loginData.token))
       .then(
         result => {
           dispatch(InsuranceAction.setId(result.data.id));
@@ -108,7 +55,8 @@ const Insurance = (props) => {
           dispatch(InsuranceAction.setInitDate(result.data.initDate));
           dispatch(InsuranceAction.setPrice(result.data.price));
           dispatch(InsuranceAction.setRiskId(result.data.riskId));
-
+          dispatch(InsuranceAction.setClientId(result.data.riskId.ClientId));
+          dispatch(InsuranceAction.setInsuranceType(result.data.insuranceTypeDTOs));
           setStateModal({
             modalShow: true
           });
@@ -124,16 +72,8 @@ const Insurance = (props) => {
       ClientId: parseInt(atob(props.match.params.ClientId))
     };
 
-    // console.log(atob(props.match.params.ClientId))
-
     http.post(
-      http.url + 'Insurance', queryObj, http.setJWT(loginData.token)
-      // {
-      //   headers: {
-      //     'Authorization': `Bearer ${loginData.token}`,
-      //   }
-      // }
-      )
+      http.url + 'Insurance', queryObj, http.setJWT(loginData.token))
       .then(
         result => {
           setStateInsurance({
@@ -146,13 +86,14 @@ const Insurance = (props) => {
   }
 
   const openNewInsuranceModal = () => {
+    dispatch(InsuranceAction.setClientId(atob(props.match.params.ClientId)));
+    dispatch(InsuranceAction.setId(0));
     setStateModal({
       modalShow: true
     });
   }
 
   const deleteInsurance = (idInsurance) => {
-    console.log(idInsurance)
     const queryObj = {
       id: idInsurance
     };
@@ -160,14 +101,10 @@ const Insurance = (props) => {
     console.log(http.toQuery(queryObj))
 
     http.delete(
-      http.url + 'Insurance?'+http.toQuery(queryObj),
-      {
-        headers: {
-          'Authorization': `Bearer ${loginData.token}`,
-        }
-      })
+      http.url + 'Insurance?'+http.toQuery(queryObj), http.setJWT(loginData.token))
       .then(
         result => {
+          toast.success("La poliza se elimino correctamente");
           getAllInsurance();
         })
       .catch(function (error) {
@@ -176,8 +113,6 @@ const Insurance = (props) => {
   }
 
   useEffect(() => {
-    // getAllRisks();
-    // getAllInsuranceTypes();
     getAllInsurance();
   }, []);
 

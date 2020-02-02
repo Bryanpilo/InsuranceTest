@@ -78,6 +78,7 @@ namespace InsuranceTest.API
             services.AddScoped<IInsuranceTypeRepository, InsuranceTypeRepository>();
             services.AddScoped<IRiskTypeRepository, RiskTypeRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IInsurance_InsuranceTypeRepository, Insurance_InsuranceTypeRepository>();
 
             //instance of business
             services.AddScoped<IUserBL, UserBL>();

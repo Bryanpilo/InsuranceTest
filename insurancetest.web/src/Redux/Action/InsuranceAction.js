@@ -54,12 +54,25 @@ const setRiskId = (data) => {
     };
 };
 
+const setClientId = (data) => {
+    return {
+        type: 'SET_CLIENT_ID',
+        payload: data
+    };
+};
+
+const setInsuranceType = (data) => {
+    return {
+        type: 'SET_INSURANCE_TYPES',
+        payload: data
+    };
+};
+
 const clearData = () => {
     return {
         type: 'CLEAR_DATA'
     };
 };
-
 
 
 export default {
@@ -71,5 +84,7 @@ export default {
     setInitDate: setInitDate,
     setPrice: setPrice,
     setRiskId: setRiskId,
-    clearData: clearData
+    clearData: clearData,
+    setInsuranceType: setInsuranceType,
+    setClientId: setClientId
 }

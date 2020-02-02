@@ -98,6 +98,15 @@ namespace InsuranceTest.API.AutoMapper
                             v => v.ClientId))
             .ReverseMap();
 
+            CreateMap<Insurance_InsuranceType, InsuranceTypeDTO>()
+          .ForMember(m => m.Id,
+                      vm => vm.MapFrom(
+                          v => v.InsuranceId))
+           .ForMember(m => m.Name,
+                      vm => vm.MapFrom(
+                          v => v.InsuranceType.Name))
+          .ReverseMap();
+
         }
     }
 }

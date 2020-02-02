@@ -5,6 +5,11 @@ namespace InsuranceTest.API.Models
 {
     public class Insurance
     {
+        public Insurance()
+        {
+            this.Insurances_InsuranceTypes = new HashSet<Insurance_InsuranceType>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,9 +20,10 @@ namespace InsuranceTest.API.Models
         public int RiskTypeId { get; set; }
         public int ClientId { get; set; }
 
-        public RiskType RiskType { get; set; }
-        public Client Client { get; set; }
+        public virtual RiskType RiskType { get; set; }
+        public virtual Client Client { get; set; }
 
-        public ICollection<Insurance_InsuranceType> InsuranInsurance_InsuranceTypeceTypes { get; set; }
+        public virtual ICollection<Insurance_InsuranceType> Insurances_InsuranceTypes { get; set; }
+
     }
 }

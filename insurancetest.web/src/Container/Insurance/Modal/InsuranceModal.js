@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
 //Styling
 import { Modal, Button, Row, Col, Tabs, Tab, Container } from "react-bootstrap";
@@ -8,45 +7,111 @@ import { toast } from "react-toastify";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 //actions
-import insurance from "../../../Redux/Action/InsuranceAction";
+import insuranceAction from "../../../Redux/Action/InsuranceAction";
 //Services
 import http from "../../../Services/HttpService";
 //Helpers
 //Containers
 import GeneralTab from "../Tabs/GeneralTab";
-// import DocumentExoneratedTab from "../Tabs/DocumentExonerated";
+import InsuranceType from "../Tabs/InsuranceType";
 
 const ClientModal = props => {
   toast.configure();
-  // let axiosCancelSource = axios.CancelToken.source();
 
   const dispatch = useDispatch();
 
-  // const clientMaintenance = useSelector(state => state.ClientMaintenance);
+  const insurance = useSelector(state => state.insurance);
+  const loginData = useSelector(state => state.login);
 
   const CloseModalAction = () => {
     props.onHide();
-    dispatch(insurance.clearData());
+    dispatch(insuranceAction.clearData());
   };
 
-  // const validData = () => {
-  //   if (
-  //     clientMaintenance.CLIENT_TYPE_DESCRIPTION !== null &&
-  //     clientMaintenance.CLIENT_TYPE_DESCRIPTION !== "null" &&
-  //     clientMaintenance.SPECIAL_TAX !== null &&
-  //     clientMaintenance.SPECIAL_TAX !== "" &&
-  //     clientMaintenance.RETENTION_TAX !== null &&
-  //     clientMaintenance.RETENTION_TAX !== "" &&
-  //     clientMaintenance.EXONERATE_TAX !== null &&
-  //     clientMaintenance.EXONERATE_TAX !== ""
-  //   ) {
-  //     dispatch(clientMaintenanceAction.isValid(true));
-  //     return true;
-  //   } else {
-  //     dispatch(clientMaintenanceAction.isValid(false));
-  //     return false;
-  //   }
-  // };
+  const createNewInsurance = () => {
+
+    const queryObj = {
+      Id: parseInt(insurance.Id),
+      Name: insurance.Name,
+      Description: insurance.Description,
+      Coverage: parseFloat(insurance.Coverage),
+      CoverageMonths: parseInt(insurance.CoverageMonths),
+      InitDate: insurance.InitDate,
+      Price: parseFloat(insurance.Price),
+      RiskId: parseInt(insurance.RiskId),
+      ClientId: parseInt(insurance.ClientId),
+      insuranceTypeDTOs: insurance.InsuranceTypes
+    };
+
+    console.log("entra aca")
+    http.post(
+      http.url + 'Insurance/CreateInsurance', queryObj, http.setJWT(loginData.token)
+      // {
+      //   headers: {
+      //     'Authorization': `Bearer ${loginData.token}`,
+      //   }
+      // }
+    )
+      .then(
+        result => {
+          toast.success("La poliza se guardo correctamente");
+            CloseModalAction();
+        })
+      .catch(function (error) {
+        console.log(error)
+      });
+    // if (
+    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== null &&
+    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== "null" &&
+    //   clientMaintenance.SPECIAL_TAX !== null &&
+    //   clientMaintenance.SPECIAL_TAX !== "" &&
+    //   clientMaintenance.RETENTION_TAX !== null &&
+    //   clientMaintenance.RETENTION_TAX !== "" &&
+    //   clientMaintenance.EXONERATE_TAX !== null &&
+    //   clientMaintenance.EXONERATE_TAX !== ""
+    // ) {
+    // dispatch(clientMaintenanceAction.isValid(true));
+    // return true;
+    // } else {
+    //   dispatch(clientMaintenanceAction.isValid(false));
+    //   return false;
+    // }
+  };
+
+  const udateInsurance = () => {
+    // dispatch(insuranceAction.setClientId(atob(props.match.params.ClientId)));
+    // http.post(
+    //   http.url + 'Insurance/CreateInsurance', insurance, http.setJWT(loginData.token)
+    //   // {
+    //   //   headers: {
+    //   //     'Authorization': `Bearer ${loginData.token}`,
+    //   //   }
+    //   // }
+    //   )
+    //   .then(
+    //     result => {
+    //       alert("sirvio")
+    //     })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   });
+    // if (
+    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== null &&
+    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== "null" &&
+    //   clientMaintenance.SPECIAL_TAX !== null &&
+    //   clientMaintenance.SPECIAL_TAX !== "" &&
+    //   clientMaintenance.RETENTION_TAX !== null &&
+    //   clientMaintenance.RETENTION_TAX !== "" &&
+    //   clientMaintenance.EXONERATE_TAX !== null &&
+    //   clientMaintenance.EXONERATE_TAX !== ""
+    // ) {
+    // dispatch(clientMaintenanceAction.isValid(true));
+    // return true;
+    // } else {
+    //   dispatch(clientMaintenanceAction.isValid(false));
+    //   return false;
+    // }
+  };
 
   // const updateClientLegalEntity = () => {
   //   if (validData()) {
@@ -74,8 +139,8 @@ const ClientModal = props => {
       dialogClassName="modal-70w"
       aria-labelledby="example-custom-modal-styling-title"
       onHide={CloseModalAction}
-      // aria-labelledby="example-modal-sizes-title-lg"
-      // onExit={CloseModalAction}
+    // aria-labelledby="example-modal-sizes-title-lg"
+    // onExit={CloseModalAction}
     >
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
@@ -94,7 +159,7 @@ const ClientModal = props => {
                   eventKey="InsuranceTypes"
                   title="Tipo de seguros"
                 >
-                  {/* <DocumentExoneratedTab></DocumentExoneratedTab> */}
+                  <InsuranceType></InsuranceType>
                 </Tab>
               </Tabs>
             </Col>
@@ -108,8 +173,8 @@ const ClientModal = props => {
           Cancel
         </Button>
         <Button
-          // onClick={updateClientLegalEntity}
-          // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
+          onClick={insurance.Id === 0 ? createNewInsurance : udateInsurance}
+        // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
         >
           Save
         </Button>

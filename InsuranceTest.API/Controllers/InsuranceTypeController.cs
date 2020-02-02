@@ -17,7 +17,7 @@ namespace InsuranceTest.API.Controllers
             _insuranceTypeBL = insuranceTypeBL;
         }
 
-        [HttpPost("getAllInsuranceType")]
+        [HttpGet("getAllInsuranceType")]
         public IActionResult getAllInsuranceType()
         {
             var insuranceTypes = _insuranceTypeBL.getAllInsuranceType();

@@ -6,7 +6,9 @@ const loginReducer = (state = ({
     CoverageMonths: null,
     InitDate: null,
     Price: null,
-    RiskId: null
+    RiskId: null,
+    ClientId: null,
+    InsuranceTypes: []
 }), action) => {
     switch (action.type) {
         case 'SET_ID':
@@ -49,6 +51,16 @@ const loginReducer = (state = ({
                 ...state,
                 RiskId: action.payload,
             });
+        case 'SET_CLIENT_ID':
+            return state = ({
+                ...state,
+                ClientId: action.payload,
+            });
+        case 'SET_INSURANCE_TYPES':
+            return state = ({
+                ...state,
+                InsuranceTypes: action.payload,
+            });
         case 'CLEAR_DATA':
             return state = ({
                 Id: null,
@@ -58,7 +70,9 @@ const loginReducer = (state = ({
                 CoverageMonths: null,
                 InitDate: null,
                 Price: null,
-                RiskId: null
+                RiskId: null,
+                ClientId: null,
+                InsuranceTypes: []
             });
         default:
             return state;

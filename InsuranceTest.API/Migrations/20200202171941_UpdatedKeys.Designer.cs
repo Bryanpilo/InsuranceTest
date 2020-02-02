@@ -4,14 +4,16 @@ using InsuranceTest.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InsuranceTest.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200202171941_UpdatedKeys")]
+    partial class UpdatedKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,6 +101,9 @@ namespace InsuranceTest.API.Migrations
                     b.Property<DateTime>("InitDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Insurances_InsuranceTypesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -125,6 +130,7 @@ namespace InsuranceTest.API.Migrations
                             CoverageMonths = 4,
                             Description = "Poliza 1",
                             InitDate = new DateTime(2017, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Poliza",
                             Price = 1000m,
                             RiskTypeId = 1
@@ -137,6 +143,7 @@ namespace InsuranceTest.API.Migrations
                             CoverageMonths = 1,
                             Description = "Poliza 2",
                             InitDate = new DateTime(2017, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Poliza 2",
                             Price = 2000m,
                             RiskTypeId = 3
@@ -149,6 +156,7 @@ namespace InsuranceTest.API.Migrations
                             CoverageMonths = 2,
                             Description = "Poliza 3",
                             InitDate = new DateTime(2017, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Poliza 3",
                             Price = 5000m,
                             RiskTypeId = 4
@@ -161,6 +169,7 @@ namespace InsuranceTest.API.Migrations
                             CoverageMonths = 3,
                             Description = "Poliza 4",
                             InitDate = new DateTime(2017, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Poliza 4",
                             Price = 10000m,
                             RiskTypeId = 3
@@ -173,6 +182,7 @@ namespace InsuranceTest.API.Migrations
                             CoverageMonths = 7,
                             Description = "Poliza 5",
                             InitDate = new DateTime(2017, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Poliza 5",
                             Price = 2000m,
                             RiskTypeId = 4
@@ -185,6 +195,7 @@ namespace InsuranceTest.API.Migrations
                             CoverageMonths = 9,
                             Description = "Poliza 6",
                             InitDate = new DateTime(2017, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Poliza 6",
                             Price = 5000m,
                             RiskTypeId = 3
@@ -198,6 +209,9 @@ namespace InsuranceTest.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Insurances_InsuranceTypesId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -209,21 +223,25 @@ namespace InsuranceTest.API.Migrations
                         new
                         {
                             Id = 1,
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Terremoto"
                         },
                         new
                         {
                             Id = 2,
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Incendio"
                         },
                         new
                         {
                             Id = 3,
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Robo"
                         },
                         new
                         {
                             Id = 4,
+                            Insurances_InsuranceTypesId = 0,
                             Name = "Pérdida"
                         });
                 });
@@ -325,6 +343,9 @@ namespace InsuranceTest.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("InsuranceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Risk")
                         .HasColumnType("nvarchar(max)");
 
@@ -336,21 +357,25 @@ namespace InsuranceTest.API.Migrations
                         new
                         {
                             Id = 1,
+                            InsuranceId = 0,
                             Risk = "Bajo"
                         },
                         new
                         {
                             Id = 2,
+                            InsuranceId = 0,
                             Risk = "Medio"
                         },
                         new
                         {
                             Id = 3,
+                            InsuranceId = 0,
                             Risk = "Medio-alto"
                         },
                         new
                         {
                             Id = 4,
+                            InsuranceId = 0,
                             Risk = "Alto"
                         });
                 });
@@ -385,7 +410,7 @@ namespace InsuranceTest.API.Migrations
                         .IsRequired();
 
                     b.HasOne("InsuranceTest.API.Models.RiskType", "RiskType")
-                        .WithMany("Insurances")
+                        .WithMany("Insurance")
                         .HasForeignKey("RiskTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
