@@ -18,8 +18,12 @@ const handleError = (error) => {
     // console.log("Not found");
   }
 
+  if (httpHelper.badCombination(error)) {
+    toast.error("Al seleccionar un tipo de riesgo alto, la cobertura no puede exceder el 50%");
+  }
+
   if (httpHelper.isUnautorized(error)) {
-    toast.error("Username or password is incorrect");
+    toast.error("Usuario o contraseña incorrectas");
   }
 
   // if (!httpHelper.isUnautorized(error)) {

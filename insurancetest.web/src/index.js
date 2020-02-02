@@ -16,7 +16,7 @@ const store = createStore(
 );
 
 const app = (
-    <BrowserRouter basename={'/cbp'}>
+    <BrowserRouter>
             <Provider store={store}>
                 <App />
             </Provider>

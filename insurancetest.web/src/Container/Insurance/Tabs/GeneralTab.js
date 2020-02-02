@@ -141,10 +141,10 @@ const GeneralTab = props => {
         <Row>
           <Col>
             <Form.Group>
-              <Form.Label>Covertura</Form.Label>
+              <Form.Label>Cobertura</Form.Label>
               <Form.Control
                 type="number"
-                placeholder={"Covertura"}
+                placeholder={"Cobertura"}
                 value={insurance.Coverage}
                 onChange={setCoverture}
               />
@@ -155,10 +155,10 @@ const GeneralTab = props => {
           </Col>
           <Col>
             <Form.Group>
-              <Form.Label>Meses de covertura</Form.Label>
+              <Form.Label>Meses de Cobertura</Form.Label>
               <Form.Control
                 type="number"
-                placeholder={"Meses de covertura"}
+                placeholder={"Meses de Cobertura"}
                 value={insurance.CoverageMonths}
                 onChange={setCoverageMonths}
               />

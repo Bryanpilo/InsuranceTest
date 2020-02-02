@@ -53,22 +53,7 @@ const ClientModal = props => {
       .catch(function (error) {
         console.log(error)
       });
-    // if (
-    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== null &&
-    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== "null" &&
-    //   clientMaintenance.SPECIAL_TAX !== null &&
-    //   clientMaintenance.SPECIAL_TAX !== "" &&
-    //   clientMaintenance.RETENTION_TAX !== null &&
-    //   clientMaintenance.RETENTION_TAX !== "" &&
-    //   clientMaintenance.EXONERATE_TAX !== null &&
-    //   clientMaintenance.EXONERATE_TAX !== ""
-    // ) {
-    // dispatch(clientMaintenanceAction.isValid(true));
-    // return true;
-    // } else {
-    //   dispatch(clientMaintenanceAction.isValid(false));
-    //   return false;
-    // }
+  
   };
 
   const updateNewInsurance = () => {
@@ -96,22 +81,7 @@ const ClientModal = props => {
       .catch(function (error) {
         console.log(error)
       });
-    // if (
-    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== null &&
-    //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== "null" &&
-    //   clientMaintenance.SPECIAL_TAX !== null &&
-    //   clientMaintenance.SPECIAL_TAX !== "" &&
-    //   clientMaintenance.RETENTION_TAX !== null &&
-    //   clientMaintenance.RETENTION_TAX !== "" &&
-    //   clientMaintenance.EXONERATE_TAX !== null &&
-    //   clientMaintenance.EXONERATE_TAX !== ""
-    // ) {
-    // dispatch(clientMaintenanceAction.isValid(true));
-    // return true;
-    // } else {
-    //   dispatch(clientMaintenanceAction.isValid(false));
-    //   return false;
-    // }
+
   };
 
   return (

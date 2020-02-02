@@ -33,7 +33,7 @@ namespace InsuranceTest.API.Controllers
             }
             else
             {
-                return BadRequest();
+                return StatusCode(405);
             }
                  
 
@@ -54,7 +54,7 @@ namespace InsuranceTest.API.Controllers
             }
             else
             {
-                return BadRequest();
+                return StatusCode(405);
             }
 
 

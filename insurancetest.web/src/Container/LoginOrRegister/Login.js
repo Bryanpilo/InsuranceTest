@@ -28,17 +28,14 @@ const Login = (props) => {
        if(response.status===200){
         dispatch(LoginAction.setUsername(response.data.userName));
         dispatch(LoginAction.setToken(response.data.token));
+        sessionStorage.setItem('userName', response.data.userName);
+        sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('login', true);
         dispatch(LoginAction.isLogin());
       }
     })
     .catch(function (error) {
     });
-
-    // http.post(http.url+"user/login", login )
-    //   .then(result => {
-    //     console.log(result)
-    //   });
   };
 
 

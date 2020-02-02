@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Form, Button, Navbar, Nav, FormControl } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from "react-router-dom";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 //actions
@@ -13,19 +13,26 @@ const Header = (props) => {
 
   const logout = () => {
     sessionStorage.removeItem('login');
+    sessionStorage.removeItem('userName');
+    sessionStorage.removeItem('token');
     dispatch(LoginAction.setUsername(null));
     dispatch(LoginAction.setToken(null));
     dispatch(LoginAction.isLogin());
+    props.history.replace("/");
   }
 
   return (
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand href="#home">GAP</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
+        <NavLink
+          to="/"
+        >
+          Home
+      </NavLink>
       </Nav>
       <Form inline>
-        <Button variant="outline-info" onClick={()=>logout()}>Cerrar sesion</Button>
+        <Button variant="outline-info" onClick={() => logout()}>Cerrar sesion</Button>
       </Form>
     </Navbar>
   )

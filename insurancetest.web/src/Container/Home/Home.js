@@ -9,7 +9,6 @@ import LoginAction from "../../Redux/Action/LoginAction";
 //hoc
 import Aux from '../../Hoc/ContentWork';
 //Styling
-// import '../../Assets/css/site.css'
 import './Home.css'
 
 const Home = (props) => {

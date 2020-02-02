@@ -4,10 +4,6 @@ import './LoginOrRegister.css'
 //Containers
 import Register from './Register';
 import Login from './Login';
-//redux
-// import { useDispatch } from 'react-redux';
-//actions
-// import dashBoardActions from '../../Actions/DashBoardAction';
 
 const LoginOrRegister = (props) => {
 
@@ -21,10 +17,7 @@ const LoginOrRegister = (props) => {
           <Tabs defaultActiveKey="Login" id="uncontrolled-tab-example">
             <Tab eventKey="Login" title="Iniciar sesion">
               <Login />
-            </Tab>
-            <Tab eventKey="Register" title="Registrarse">
-              <Register />
-            </Tab>
+            </Tab>  
           </Tabs>
         </Col>
       </Row>
