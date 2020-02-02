@@ -114,5 +114,45 @@ namespace InsuranceTest.API.Business.Implementation
 
             return data;
         }
+
+        public bool updateInsurance(InsuranceDTO insuranceDTO)
+        {
+            Insurance insurance = new Insurance
+            {
+                Id= insuranceDTO.Id,
+                Name = insuranceDTO.Name,
+                Description = insuranceDTO.Description,
+                Coverage = insuranceDTO.Coverage,
+                CoverageMonths = insuranceDTO.CoverageMonths,
+                InitDate = insuranceDTO.InitDate,
+                Price = insuranceDTO.Price,
+                ClientId = insuranceDTO.ClientId,
+                RiskTypeId = insuranceDTO.RiskId
+            };
+
+            _insuranceRepository.Update(insurance);
+
+
+
+            _unitOfWork.Save();
+
+            _insurance_InsuranceTypeRepository.DeleteWhere(x => x.InsuranceId == insurance.Id);
+
+            foreach (var insuranceType in insuranceDTO.insuranceTypeDTOs)
+            {
+                Insurance_InsuranceType insurance_InsuranceType = new Insurance_InsuranceType
+                {
+                    InsuranceId = insurance.Id,
+                    InsuranceTypeId = insuranceType.Id
+                };
+
+                _insurance_InsuranceTypeRepository.Add(insurance_InsuranceType);
+
+            }
+
+            _unitOfWork.Save();
+
+            return true;
+        }
     }
 }

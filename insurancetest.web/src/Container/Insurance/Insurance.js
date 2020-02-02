@@ -47,6 +47,7 @@ const Insurance = (props) => {
       http.url + 'Insurance/getInsurangeBYIds', queryObj,http.setJWT(loginData.token))
       .then(
         result => {
+          console.log(result.data)
           dispatch(InsuranceAction.setId(result.data.id));
           dispatch(InsuranceAction.setName(result.data.name));
           dispatch(InsuranceAction.setDescription(result.data.description));
@@ -55,7 +56,7 @@ const Insurance = (props) => {
           dispatch(InsuranceAction.setInitDate(result.data.initDate));
           dispatch(InsuranceAction.setPrice(result.data.price));
           dispatch(InsuranceAction.setRiskId(result.data.riskId));
-          dispatch(InsuranceAction.setClientId(result.data.riskId.ClientId));
+          dispatch(InsuranceAction.setClientId(result.data.clientId));
           dispatch(InsuranceAction.setInsuranceType(result.data.insuranceTypeDTOs));
           setStateModal({
             modalShow: true

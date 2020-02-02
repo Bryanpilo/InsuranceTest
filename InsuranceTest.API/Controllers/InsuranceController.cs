@@ -31,6 +31,19 @@ namespace InsuranceTest.API.Controllers
             return Ok(values);
         }
 
+        [HttpPost("UpdateInsurance")]
+        public IActionResult UpdateInsurance(InsuranceDTO insuranceDTO)
+        {
+            var values = _insuranceBL.updateInsurance(insuranceDTO);
+
+            if (values == false)
+                return Unauthorized();
+
+
+            return Ok(values);
+        }
+
+
         [HttpPost("getInsurangeBYIds")]
         public IActionResult getInsurangeBYIds(getInsuranceByIds getInsuranceByIds)
         {

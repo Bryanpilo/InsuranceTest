@@ -43,15 +43,8 @@ const ClientModal = props => {
       insuranceTypeDTOs: insurance.InsuranceTypes
     };
 
-    console.log("entra aca")
     http.post(
-      http.url + 'Insurance/CreateInsurance', queryObj, http.setJWT(loginData.token)
-      // {
-      //   headers: {
-      //     'Authorization': `Bearer ${loginData.token}`,
-      //   }
-      // }
-    )
+      http.url + 'Insurance/CreateInsurance', queryObj, http.setJWT(loginData.token))
       .then(
         result => {
           toast.success("La poliza se guardo correctamente");
@@ -78,23 +71,31 @@ const ClientModal = props => {
     // }
   };
 
-  const udateInsurance = () => {
-    // dispatch(insuranceAction.setClientId(atob(props.match.params.ClientId)));
-    // http.post(
-    //   http.url + 'Insurance/CreateInsurance', insurance, http.setJWT(loginData.token)
-    //   // {
-    //   //   headers: {
-    //   //     'Authorization': `Bearer ${loginData.token}`,
-    //   //   }
-    //   // }
-    //   )
-    //   .then(
-    //     result => {
-    //       alert("sirvio")
-    //     })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   });
+  const updateNewInsurance = () => {
+
+    const queryObj = {
+      Id: parseInt(insurance.Id),
+      Name: insurance.Name,
+      Description: insurance.Description,
+      Coverage: parseFloat(insurance.Coverage),
+      CoverageMonths: parseInt(insurance.CoverageMonths),
+      InitDate: insurance.InitDate,
+      Price: parseFloat(insurance.Price),
+      RiskId: parseInt(insurance.RiskId),
+      ClientId: parseInt(insurance.ClientId),
+      insuranceTypeDTOs: insurance.InsuranceTypes
+    };
+
+    http.post(
+      http.url + 'Insurance/UpdateInsurance', queryObj, http.setJWT(loginData.token))
+      .then(
+        result => {
+          toast.success("La poliza se actualizó correctamente");
+            CloseModalAction();
+        })
+      .catch(function (error) {
+        console.log(error)
+      });
     // if (
     //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== null &&
     //   clientMaintenance.CLIENT_TYPE_DESCRIPTION !== "null" &&
@@ -113,25 +114,6 @@ const ClientModal = props => {
     // }
   };
 
-  // const updateClientLegalEntity = () => {
-  //   if (validData()) {
-  //     http
-  //       .put(http.url + "clientlegalEntity", clientMaintenance, {
-  //         headers: {
-  //           withCredentials: true
-  //         }
-  //       })
-  //       .then(result => {
-  //         if (result.status === 200) {
-  //           toast.success("The client was updated correctly!", {position: toast.POSITION.TOP_CENTER});
-  //           CloseModalAction();
-  //         }
-  //       });
-  //   } else {
-  //     toast.error("Please fill in all the required fields.", {position: toast.POSITION.TOP_CENTER});
-  //   }
-  // };
-
   return (
     <Modal
       {...props}
@@ -139,8 +121,6 @@ const ClientModal = props => {
       dialogClassName="modal-70w"
       aria-labelledby="example-custom-modal-styling-title"
       onHide={CloseModalAction}
-    // aria-labelledby="example-modal-sizes-title-lg"
-    // onExit={CloseModalAction}
     >
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
@@ -173,8 +153,7 @@ const ClientModal = props => {
           Cancel
         </Button>
         <Button
-          onClick={insurance.Id === 0 ? createNewInsurance : udateInsurance}
-        // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
+          onClick={insurance.Id === 0 ? createNewInsurance : updateNewInsurance}
         >
           Save
         </Button>

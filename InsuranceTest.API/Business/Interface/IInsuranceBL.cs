@@ -8,9 +8,8 @@ namespace InsuranceTest.API.Business.Interface
     {
         IEnumerable<InsuranceDTO> getAllInsuranceByClientID(int Id);
         InsuranceDTO getAllInsuranceByInsuranceIdAndClientId(int Id, int clientId);
-
         bool addInsurance(InsuranceDTO insuranceDTO);
-
+        bool updateInsurance(InsuranceDTO insuranceDTO);
         bool deleteInsurance(int Id);
 
     }
