@@ -118,14 +118,16 @@ const Insurance = (props) => {
       });
   }
 
-  const getAllInsurance = (props) => {
+  const getAllInsurance = (prop) => {
 
     const queryObj = {
-      id: 1
+      ClientId: parseInt(atob(props.match.params.ClientId))
     };
 
+    // console.log(atob(props.match.params.ClientId))
+
     http.post(
-      http.url + 'Insurance', queryObj,http.setJWT(loginData.token)
+      http.url + 'Insurance', queryObj, http.setJWT(loginData.token)
       // {
       //   headers: {
       //     'Authorization': `Bearer ${loginData.token}`,

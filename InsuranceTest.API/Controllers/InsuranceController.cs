@@ -44,9 +44,9 @@ namespace InsuranceTest.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(int id)
+        public IActionResult Post(getInsureByClientId getInsureByClientId)
         {
-            var values = _insuranceBL.getAllInsuranceByClientID(id);
+            var values = _insuranceBL.getAllInsuranceByClientID(getInsureByClientId.ClientId);
 
             if (values == null)
                 return StatusCode(204);

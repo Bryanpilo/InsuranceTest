@@ -10,7 +10,7 @@ const Routers = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <Switch>
       <Route path="/" component={HomePage} exact />
-      <Route path="/insurance" component={Insurance} exact />
+      <Route path="/insurance/:ClientId" component={Insurance} exact />
     </Switch>
   </Suspense>
 );

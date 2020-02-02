@@ -46,7 +46,7 @@ const Home = (props) => {
   }
 
   const getInsurances = (prop) =>{
-    props.history.replace("/Insurance");
+    props.history.replace("/Insurance/"+ btoa(prop));
   }
 
   var hour = new Date().getHours();
@@ -83,7 +83,7 @@ const Home = (props) => {
                       <td>
                         <Button value={" - "}
                           variant={"outline-success"}
-                          onClick={() => getInsurances()}
+                          onClick={() => getInsurances(client.id)}
                         >
                           Poliza
                       </Button>

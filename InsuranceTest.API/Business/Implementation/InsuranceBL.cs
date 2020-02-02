@@ -74,7 +74,7 @@ namespace InsuranceTest.API.Business.Implementation
         public IEnumerable<InsuranceDTO> getAllInsuranceByClientID(int Id)
         {
 
-            var Insurance = _insuranceRepository.GetAll();
+            var Insurance = _insuranceRepository.GetAll(x =>x.ClientId==Id);
 
             return _mapper.Map<IEnumerable<InsuranceDTO>>(Insurance.AsEnumerable());
         }
