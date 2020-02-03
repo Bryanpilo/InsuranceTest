@@ -62,7 +62,6 @@ const InsuranceType = (props) => {
             let list = insurance.InsuranceTypes;
 
             let exist = list.filter(x => x.id === parseInt(stateInsuranceTypes.selected))
-            console.log(exist);
 
             if (exist.length === 0) {
                 list.push(insuranceSelected[0]);
