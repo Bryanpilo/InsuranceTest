@@ -15,7 +15,6 @@ const handleError = (error) => {
 
   if (httpHelper.isNotFound(error)) {
     toast.error("An unexpected error occurred, please try again");
-    // console.log("Not found");
   }
 
   if (httpHelper.badCombination(error)) {

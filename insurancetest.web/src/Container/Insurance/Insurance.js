@@ -36,8 +36,6 @@ const Insurance = (props) => {
 
   const getAllInsuranceById = (idInsurance, idClient) => {
 
-    console.log(idInsurance + " - " + idClient)
-
     const queryObj = {
       id: idInsurance,
       clientId: idClient
@@ -47,7 +45,6 @@ const Insurance = (props) => {
       http.url + 'Insurance/getInsurangeBYIds', queryObj,http.setJWT(loginData.token))
       .then(
         result => {
-          console.log(result.data)
           dispatch(InsuranceAction.setId(result.data.id));
           dispatch(InsuranceAction.setName(result.data.name));
           dispatch(InsuranceAction.setDescription(result.data.description));
@@ -98,8 +95,6 @@ const Insurance = (props) => {
     const queryObj = {
       id: idInsurance
     };
-
-    console.log(http.toQuery(queryObj))
 
     http.delete(
       http.url + 'Insurance?'+http.toQuery(queryObj), http.setJWT(loginData.token))
