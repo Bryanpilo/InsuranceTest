@@ -23,8 +23,6 @@ const GeneralTab = props => {
     Risks: []
   })
 
-  //#region set methods
-
   const setName = event => {
     dispatch(insuranceAction.setName(event.target.value));
   };
@@ -53,7 +51,6 @@ const GeneralTab = props => {
     dispatch(insuranceAction.setRiskId(event.target.value));
   };
 
-
   const getAllRisks = (props) => {
 
     http.get(
@@ -69,41 +66,12 @@ const GeneralTab = props => {
       });
   }
 
-  //#endregion
-
-  // //#region country typeahead
-
-  // const [stateClientType, setStateClientType] = useState({
-  //   clientType: []
-  // });
-
-  // const getSelectedClientType = event => {
-  //   dispatch(clientAction.ClientType(event.target.value));
-  // };
-
-  // const GetDataClientType = props => {
-  //   const queryObj = {
-  //     statusId: "A"
-  //   };
-
-  //   http
-  //     .get(http.url + "ClientType?" + http.toQuery(queryObj), {
-  //       withCredentials: true
-  //     })
-  //     .then(result => {
-  //       setStateClientType({
-  //         clientType: result.data
-  //       });
-  //     });
-  // };
-
   useEffect(() => {
     getAllRisks();
     if (insurance.InitDate !== null)
       dispatch(insuranceAction.setInitDate(insurance.InitDate.split("T")[0]));
   }, []);
 
-  // //#endregion
 
   return (
     <Row>
@@ -118,9 +86,6 @@ const GeneralTab = props => {
                 value={insurance.Name}
                 onChange={setName}
               />
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           <Col>
@@ -132,9 +97,6 @@ const GeneralTab = props => {
                 value={insurance.Description}
                 onChange={setDescription}
               />
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>
@@ -148,9 +110,6 @@ const GeneralTab = props => {
                 value={insurance.Coverage}
                 onChange={setCoverture}
               />
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           <Col>
@@ -162,9 +121,6 @@ const GeneralTab = props => {
                 value={insurance.CoverageMonths}
                 onChange={setCoverageMonths}
               />
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>
@@ -178,9 +134,6 @@ const GeneralTab = props => {
                 value={insurance.InitDate}
                 onChange={setDateInit}
               />
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           <Col>
@@ -192,9 +145,6 @@ const GeneralTab = props => {
                 value={insurance.Price}
                 onChange={setPrice}
               />
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>
@@ -203,11 +153,9 @@ const GeneralTab = props => {
             <Form.Group>
               <Form.Label>Tipo de riesgo</Form.Label>
               <Form.Control
-                // isInvalid={stateFiscalVerificator.isValid === false ? true : false}
                 as="select"
                 onChange={onClickRisk}
                 id="select"
-              // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
               >
                 <option key="null" value="null">Seleccione un tipo</option>
                 {stateRisk.Risks.map((risk, i) => {
@@ -219,17 +167,6 @@ const GeneralTab = props => {
 
                 })}
               </Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please select a verifying fiscal.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group>
-              <Form.Label>Boton</Form.Label>
-              <Form.Control.Feedback type="invalid">
-                Please enter a special tax percentage.
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>

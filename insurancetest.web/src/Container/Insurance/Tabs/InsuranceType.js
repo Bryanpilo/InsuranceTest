@@ -21,7 +21,6 @@ const InsuranceType = (props) => {
     const insurance = useSelector(state => state.insurance)
     const loginData = useSelector(state => state.login)
 
-    //#region add new currency 
     const [stateInsuranceTypes, setStateInsuranceTypes] = useState({
         InsuranceTypes: [],
         selected: null,
@@ -86,21 +85,15 @@ const InsuranceType = (props) => {
         getAllInsuranceTypes();
     }, []);
 
-    //#endregion
-
-    //#region  delete currency
     const deleteInsuranceType = (insuranceId) => {
 
         let list = insurance.InsuranceTypes;
 
-        console.log(list, insuranceId)
-       
         list.splice(insuranceId, 1);
 
         dispatch(InsuranceAction.setInsuranceType(list));
 
     };
-    //#endregion
 
     return (
         <Row>
@@ -118,14 +111,14 @@ const InsuranceType = (props) => {
                                             as="select"
                                             onChange={onClickInsuranceType}
                                             id="select"
-                                            // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
+                                        // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
                                         >
                                             <option key="null" value="null">Seleccione un tipo</option>
                                             {stateInsuranceTypes.InsuranceTypes.map((InsuranceTypes, i) => {
                                                 return (<option
                                                     key={i}
                                                     value={InsuranceTypes.id}>{InsuranceTypes.name}
-                                                  </option>)
+                                                </option>)
 
                                             })}
                                         </Form.Control>
@@ -138,7 +131,7 @@ const InsuranceType = (props) => {
                                     <Button
                                         // className='btn-ey-classic-1 btn-ey-yellow'
                                         onClick={createNewInsuranceType}
-                                        // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
+                                    // disabled={sessionStorage.getItem("userData_PrimaryRole") === "Auditor" ? true : false}
                                     // disabled={props.match.params.ViewMode === "V" ? true : false}
                                     >
                                         Agregar

@@ -13,29 +13,34 @@ const Login = (props) => {
   toast.configure()
   const dispatch = useDispatch();
 
-  const username= useRef();
-  const password= useRef();
+  const username = useRef();
+  const password = useRef();
 
   const login = () => {
-    const queryObj = {
-      username: username.current.value,
-      password: password.current.value
-    };
+    if ((username.current.value !== null && username.current.value !== "")
+      && (password.current.value !== null && password.current.value !== "")) {
+      const queryObj = {
+        username: username.current.value,
+        password: password.current.value
+      };
 
-    http.post(http.url+"user/login", queryObj)
-    .then(function (response) {
-    
-       if(response.status===200){
-        dispatch(LoginAction.setUsername(response.data.userName));
-        dispatch(LoginAction.setToken(response.data.token));
-        sessionStorage.setItem('userName', response.data.userName);
-        sessionStorage.setItem('token', response.data.token);
-        sessionStorage.setItem('login', true);
-        dispatch(LoginAction.isLogin());
-      }
-    })
-    .catch(function (error) {
-    });
+      http.post(http.url + "user/login", queryObj)
+        .then(function (response) {
+
+          if (response.status === 200) {
+            dispatch(LoginAction.setUsername(response.data.userName));
+            dispatch(LoginAction.setToken(response.data.token));
+            sessionStorage.setItem('userName', response.data.userName);
+            sessionStorage.setItem('token', response.data.token);
+            sessionStorage.setItem('login', true);
+            dispatch(LoginAction.isLogin());
+          }
+        })
+        .catch(function (error) {
+        });
+    } else {
+      toast.error("Debe proporcionar toda la información necesaria");
+    }
   };
 
 
@@ -48,9 +53,9 @@ const Login = (props) => {
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Contraseña</Form.Label>
-        <Form.Control type="password" placeholder="Password" ref={password}/>
+        <Form.Control type="password" placeholder="Password" ref={password} />
       </Form.Group>
-      <Button variant="primary" onClick={()=>login()}>
+      <Button variant="primary" onClick={() => login()}>
         Iniciar sesion
     </Button>
     </Form>

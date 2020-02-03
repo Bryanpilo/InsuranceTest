@@ -29,59 +29,84 @@ const ClientModal = props => {
   };
 
   const createNewInsurance = () => {
+    if (insurance.Id !== "" && insurance.Id !== null
+      && insurance.Name !== "" && insurance.Name !== null
+      && insurance.Description !== "" && insurance.Description !== null
+      && insurance.Coverage !== "" && insurance.Coverage !== null
+      && insurance.CoverageMonths !== "" && insurance.CoverageMonths !== null
+      && insurance.InitDate !== "" && insurance.InitDate !== null
+      && insurance.Price !== "" && insurance.Price !== null
+      && insurance.RiskId !== "" && insurance.RiskId !== null
+      && insurance.ClientId !== "" && insurance.ClientId !== null
+      && insurance.InsuranceTypes !== "" && insurance.InsuranceTypes !== null) {
 
-    const queryObj = {
-      Id: parseInt(insurance.Id),
-      Name: insurance.Name,
-      Description: insurance.Description,
-      Coverage: parseFloat(insurance.Coverage),
-      CoverageMonths: parseInt(insurance.CoverageMonths),
-      InitDate: insurance.InitDate,
-      Price: parseFloat(insurance.Price),
-      RiskId: parseInt(insurance.RiskId),
-      ClientId: parseInt(insurance.ClientId),
-      insuranceTypeDTOs: insurance.InsuranceTypes
-    };
+      const queryObj = {
+        Id: parseInt(insurance.Id),
+        Name: insurance.Name,
+        Description: insurance.Description,
+        Coverage: parseFloat(insurance.Coverage),
+        CoverageMonths: parseInt(insurance.CoverageMonths),
+        InitDate: insurance.InitDate,
+        Price: parseFloat(insurance.Price),
+        RiskId: parseInt(insurance.RiskId),
+        ClientId: parseInt(insurance.ClientId),
+        insuranceTypeDTOs: insurance.InsuranceTypes
+      };
 
-    http.post(
-      http.url + 'Insurance/CreateInsurance', queryObj, http.setJWT(loginData.token))
-      .then(
-        result => {
-          toast.success("La poliza se guardo correctamente");
+      http.post(
+        http.url + 'Insurance/CreateInsurance', queryObj, http.setJWT(loginData.token))
+        .then(
+          result => {
+            toast.success("La poliza se guardo correctamente");
             CloseModalAction();
-        })
-      .catch(function (error) {
-        console.log(error)
-      });
-  
+          })
+        .catch(function (error) {
+          console.log(error)
+        });
+
+    } else {
+      toast.error("Debe proporcionar toda la información necesaria");
+    }
   };
 
   const updateNewInsurance = () => {
+    if (insurance.Id !== "" && insurance.Id !== null
+      && insurance.Name !== "" && insurance.Name !== null
+      && insurance.Description !== "" && insurance.Description !== null
+      && insurance.Coverage !== "" && insurance.Coverage !== null
+      && insurance.CoverageMonths !== "" && insurance.CoverageMonths !== null
+      && insurance.InitDate !== "" && insurance.InitDate !== null
+      && insurance.Price !== "" && insurance.Price !== null
+      && insurance.RiskId !== "" && insurance.RiskId !== null
+      && insurance.ClientId !== "" && insurance.ClientId !== null
+      && insurance.InsuranceTypes !== "" && insurance.InsuranceTypes !== null) {
 
-    const queryObj = {
-      Id: parseInt(insurance.Id),
-      Name: insurance.Name,
-      Description: insurance.Description,
-      Coverage: parseFloat(insurance.Coverage),
-      CoverageMonths: parseInt(insurance.CoverageMonths),
-      InitDate: insurance.InitDate,
-      Price: parseFloat(insurance.Price),
-      RiskId: parseInt(insurance.RiskId),
-      ClientId: parseInt(insurance.ClientId),
-      insuranceTypeDTOs: insurance.InsuranceTypes
-    };
+      const queryObj = {
+        Id: parseInt(insurance.Id),
+        Name: insurance.Name,
+        Description: insurance.Description,
+        Coverage: parseFloat(insurance.Coverage),
+        CoverageMonths: parseInt(insurance.CoverageMonths),
+        InitDate: insurance.InitDate,
+        Price: parseFloat(insurance.Price),
+        RiskId: parseInt(insurance.RiskId),
+        ClientId: parseInt(insurance.ClientId),
+        insuranceTypeDTOs: insurance.InsuranceTypes
+      };
 
-    http.post(
-      http.url + 'Insurance/UpdateInsurance', queryObj, http.setJWT(loginData.token))
-      .then(
-        result => {
-          toast.success("La poliza se actualizó correctamente");
+      http.post(
+        http.url + 'Insurance/UpdateInsurance', queryObj, http.setJWT(loginData.token))
+        .then(
+          result => {
+            toast.success("La poliza se actualizó correctamente");
             CloseModalAction();
-        })
-      .catch(function (error) {
-        console.log(error)
-      });
-
+          })
+        .catch(function (error) {
+          console.log(error)
+        });
+    } else {
+      toast.error("Debe proporcionar toda la información necesaria");
+    }
   };
 
   return (
